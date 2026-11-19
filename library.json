@@ -1,0 +1,38 @@
+{
+  "books": [
+    {
+      "id": "persepolis",
+      "title": "Persepolis",
+      "preset": "persepolis",
+      "chapters": [
+        {
+          "title": "The Veil",
+          "folder": "pages/persepolis/01-the-veil/",
+          "count": 0,
+          "prefix": "p",
+          "start": 1,
+          "pad": 3,
+          "ext": ".jpg",
+          "firstPage": 3
+        }
+      ]
+    },
+    {
+      "id": "demo",
+      "title": "Demo pages (delete me)",
+      "preset": "generic",
+      "chapters": [
+        {
+          "title": "Demo chapter",
+          "folder": "pages/demo/",
+          "count": 6,
+          "start": 1,
+          "pad": 3,
+          "ext": ".jpg",
+          "firstPage": 11,
+          "prefix": "p"
+        }
+      ]
+    }
+  ]
+}
