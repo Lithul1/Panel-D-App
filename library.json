@@ -5,33 +5,25 @@
       "title": "Persepolis",
       "preset": "persepolis",
       "chapters": [
-        {
-          "title": "The Veil",
-          "folder": "pages/persepolis/01-the-veil/",
-          "count": 0,
-          "prefix": "p",
-          "start": 1,
-          "pad": 3,
-          "ext": ".jpg",
-          "firstPage": 3
-        }
-      ]
-    },
-    {
-      "id": "demo",
-      "title": "Demo pages (delete me)",
-      "preset": "generic",
-      "chapters": [
-        {
-          "title": "Demo chapter",
-          "folder": "pages/demo/",
-          "count": 6,
-          "start": 1,
-          "pad": 3,
-          "ext": ".jpg",
-          "firstPage": 11,
-          "prefix": "p"
-        }
+        { "title": "The Veil", "folder": "pages/persepolis/", "prefix": "p", "start": 3, "count": 7, "pad": 3, "ext": ".jpg", "firstPage": 3 },
+        { "title": "The Bicycle", "folder": "pages/persepolis/", "prefix": "p", "start": 10, "count": 8, "pad": 3, "ext": ".jpg", "firstPage": 10 },
+        { "title": "The Water Cell", "folder": "pages/persepolis/", "prefix": "p", "start": 18, "count": 8, "pad": 3, "ext": ".jpg", "firstPage": 18 },
+        { "title": "Persepolis", "folder": "pages/persepolis/", "prefix": "p", "start": 26, "count": 7, "pad": 3, "ext": ".jpg", "firstPage": 26 },
+        { "title": "The Letter", "folder": "pages/persepolis/", "prefix": "p", "start": 33, "count": 7, "pad": 3, "ext": ".jpg", "firstPage": 33 },
+        { "title": "The Party", "folder": "pages/persepolis/", "prefix": "p", "start": 40, "count": 7, "pad": 3, "ext": ".jpg", "firstPage": 40 },
+        { "title": "The Heroes", "folder": "pages/persepolis/", "prefix": "p", "start": 47, "count": 7, "pad": 3, "ext": ".jpg", "firstPage": 47 },
+        { "title": "Moscow", "folder": "pages/persepolis/", "prefix": "p", "start": 54, "count": 8, "pad": 3, "ext": ".jpg", "firstPage": 54 },
+        { "title": "The Sheep", "folder": "pages/persepolis/", "prefix": "p", "start": 62, "count": 10, "pad": 3, "ext": ".jpg", "firstPage": 62 },
+        { "title": "The Trip", "folder": "pages/persepolis/", "prefix": "p", "start": 72, "count": 8, "pad": 3, "ext": ".jpg", "firstPage": 72 },
+        { "title": "The F-14s", "folder": "pages/persepolis/", "prefix": "p", "start": 80, "count": 7, "pad": 3, "ext": ".jpg", "firstPage": 80 },
+        { "title": "The Jewels", "folder": "pages/persepolis/", "prefix": "p", "start": 87, "count": 7, "pad": 3, "ext": ".jpg", "firstPage": 87 },
+        { "title": "The Key", "folder": "pages/persepolis/", "prefix": "p", "start": 94, "count": 9, "pad": 3, "ext": ".jpg", "firstPage": 94 },
+        { "title": "The Wine", "folder": "pages/persepolis/", "prefix": "p", "start": 103, "count": 8, "pad": 3, "ext": ".jpg", "firstPage": 103 },
+        { "title": "The Cigarette", "folder": "pages/persepolis/", "prefix": "p", "start": 111, "count": 7, "pad": 3, "ext": ".jpg", "firstPage": 111 },
+        { "title": "The Passport", "folder": "pages/persepolis/", "prefix": "p", "start": 118, "count": 8, "pad": 3, "ext": ".jpg", "firstPage": 118 },
+        { "title": "Kim Wilde", "folder": "pages/persepolis/", "prefix": "p", "start": 126, "count": 9, "pad": 3, "ext": ".jpg", "firstPage": 126 },
+        { "title": "The Shabbat", "folder": "pages/persepolis/", "prefix": "p", "start": 135, "count": 8, "pad": 3, "ext": ".jpg", "firstPage": 135 },
+        { "title": "The Dowry", "folder": "pages/persepolis/", "prefix": "p", "start": 143, "count": 11, "pad": 3, "ext": ".jpg", "firstPage": 143 }
       ]
     }
   ]
