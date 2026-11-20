@@ -33,7 +33,7 @@ html[data-look=modern][data-mode=dark]{
   --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.4);
 }
 *{box-sizing:border-box}
-html,body{margin:0;height:100%}
+html,body{margin:0;height:100%;overflow:hidden;overflow:clip;overscroll-behavior:none}
 body{font-family:var(--ui);color:var(--ink);background:var(--desk-a);
   background-image:radial-gradient(var(--desk-b) 1px,transparent 1.2px);background-size:4px 4px;
   display:grid;grid-template-rows:auto 1fr auto;overflow:hidden;-webkit-font-smoothing:antialiased}
@@ -150,7 +150,7 @@ html[data-look=classic] .drop{border-color:var(--faint)}
 .empty code{font-family:var(--mono);font-size:12px;background:var(--field);padding:1px 4px;border:1px solid var(--rule)}
 
 /* ---------- sheet ---------- */
-.sheetwrap{flex:1;min-height:0;overflow:auto;background:var(--win2);padding:14px;scroll-behavior:smooth}
+.sheetwrap{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;background:var(--win2);padding:14px;scroll-behavior:smooth}
 .sheet{background:var(--paper);border:1px solid var(--line);max-width:760px;margin:0 auto;padding:22px 24px 30px;box-shadow:var(--shadow-sm);border-radius:calc(var(--r)*.5)}
 .sheet h1{font-family:"Zilla Slab",Georgia,serif;font-weight:700;font-size:32px;margin:0;letter-spacing:-.01em;line-height:1}
 .shead{display:flex;align-items:flex-end;justify-content:space-between;border-bottom:2.5px solid var(--ink);padding-bottom:6px;position:relative;margin-bottom:12px}
@@ -424,13 +424,13 @@ dialog.wide{max-width:min(920px,96vw)}
           <div class="helpers"><button class="lnk" data-stems="C">Sentence starters</button></div><div class="stems" data-for="C" hidden></div>
         </section>
 
-        <section class="sec" id="sP" data-sec="P"><h2><span class="badge wide" style="background:var(--ink-o)">Pg</span>Page Study<span class="done" data-done="P"></span></h2>
+        <section class="sec" id="sP" data-sec="P"><h2><span class="badge" style="background:var(--ink-o)">D</span>Page Study<span class="done" data-done="P"></span></h2>
           <p class="hint">Look closely at your page: panel sizes, framing, close-ups, what's drawn and what's left out.</p>
           <textarea class="w" data-k="P.study" rows="3" placeholder="On this page, the artist…"></textarea>
           <div class="helpers"><button class="lnk" data-stems="P">Comics vocabulary</button></div><div class="stems" data-for="P" hidden></div>
         </section>
 
-        <section class="sec" id="sD" data-sec="D"><h2><span class="badge" style="background:var(--ink-g)">D</span>Theme Analysis<span class="done" data-done="D"></span></h2>
+        <section class="sec" id="sD" data-sec="D"><h2><span class="badge" style="background:var(--ink-g)">E</span>Theme Analysis<span class="done" data-done="D"></span></h2>
           <div class="theme-box">
             <span class="lab cap" style="margin-top:0">Theme (a message about life, not one word)</span>
             <input class="w" data-k="D.theme" list="dlThemes" placeholder="The author suggests that…">
@@ -442,7 +442,7 @@ dialog.wide{max-width:min(920px,96vw)}
           </div>
         </section>
 
-        <section class="sec" id="sE" data-sec="E"><h2><span class="badge" style="background:var(--ink-l)">E</span>Color Study<span class="done" data-done="E"></span></h2>
+        <section class="sec" id="sE" data-sec="E"><h2><span class="badge" style="background:var(--ink-l)">F</span>Color Study<span class="done" data-done="E"></span></h2>
           <p class="hint" id="colorHint">Color your page on the left, then explain your choices.</p>
           <div class="used" id="usedColors"></div>
           <div class="color-sentence">I added the color(s) <input data-k="E.colors" size="14" placeholder="red, gold"> to <input data-k="E.to1" size="14" placeholder="what you colored">, <input data-k="E.to2" size="12" placeholder="something else">, and <input data-k="E.to3" size="12" placeholder="one more"> because</div>
@@ -499,14 +499,14 @@ dialog.wide{max-width:min(920px,96vw)}
 
 <dialog id="dHelp" class="wide"><div class="db">
   <h3>How Panel’d works</h3>
-  <p><b>1.</b> Choose a page from the class library, or upload your own page image. <b>2.</b> Color the page. <b>3.</b> Fill in sections A–E. <b>4.</b> Export a PDF and turn it in.</p>
+  <p><b>1.</b> Choose a page from the class library, or upload your own page image. <b>2.</b> Color the page. <b>3.</b> Fill in sections A–F. <b>4.</b> Export a PDF and turn it in.</p>
   <div class="helpgrid">
     <span class="badge" style="background:var(--ink-y)">A</span><div><b>Summary</b> — Retell the chapter's key events in your own words: who, what, where, and why it matters.</div>
     <span class="badge" style="background:var(--ink-p)">B</span><div><b>Quote Analysis</b> — Copy one important line exactly, cite it (Page #, Panel #), and explain what it reveals.</div>
     <span class="badge" style="background:var(--ink-b)">C</span><div><b>Literary Elements</b> — Name one element (symbolism, irony, a close-up…), show where it appears, and explain what it does.</div>
-    <span class="badge wide" style="background:var(--ink-o)">Pg</span><div><b>Page Study</b> — Analyze the page you chose: panel sizes, framing, gutters, what's shown and what's left out.</div>
-    <span class="badge" style="background:var(--ink-g)">D</span><div><b>Theme Analysis</b> — State a theme as a full sentence (a message about life) and support it with evidence.</div>
-    <span class="badge" style="background:var(--ink-l)">E</span><div><b>Color Study</b> — Color parts of your page on purpose, then finish the sentence explaining why.</div>
+    <span class="badge" style="background:var(--ink-o)">D</span><div><b>Page Study</b> — Analyze the page you chose: panel sizes, framing, gutters, what's shown and what's left out.</div>
+    <span class="badge" style="background:var(--ink-g)">E</span><div><b>Theme Analysis</b> — State a theme as a full sentence (a message about life) and support it with evidence.</div>
+    <span class="badge" style="background:var(--ink-l)">F</span><div><b>Color Study</b> — Color parts of your page on purpose, then finish the sentence explaining why.</div>
   </div>
   <p style="font-size:13px;color:var(--soft)">Counting panels: start at the top left and read like a sentence — left to right, then down. Panel 1 is the first box you read.</p>
   <h4 class="cap" style="margin:14px 0 4px">Shortcuts</h4>
@@ -924,27 +924,27 @@ function renderUsed() {
 
 /* ============ checklist / key ============ */
 const CHECK = [
-  ['A', 'Summary', 'var(--ink-y)', () => words(S.A.summary) >= 12],
-  ['B', 'Quote', 'var(--ink-p)', () => S.B.quote.trim() && words(S.B.explain) >= 8],
-  ['C', 'Element', 'var(--ink-b)', () => (S.C.element && (S.C.element !== 'Other…' || S.C.other.trim())) && S.C.quote.trim() && words(S.C.effect) >= 5],
-  ['Pg', 'Page study', 'var(--ink-o)', () => words(S.P.study) >= 10],
-  ['D', 'Theme', 'var(--ink-g)', () => S.D.theme.trim() && words(S.D.analysis) >= 15],
-  ['E', 'Color', 'var(--ink-l)', () => S.E.colors.trim() && S.E.to1.trim() && words(S.E.because) >= 4]
+  ['A', 'Summary', 'var(--ink-y)', () => words(S.A.summary) >= 12, 'A'],
+  ['B', 'Quote', 'var(--ink-p)', () => S.B.quote.trim() && words(S.B.explain) >= 8, 'B'],
+  ['C', 'Element', 'var(--ink-b)', () => (S.C.element && (S.C.element !== 'Other…' || S.C.other.trim())) && S.C.quote.trim() && words(S.C.effect) >= 5, 'C'],
+  ['D', 'Page study', 'var(--ink-o)', () => words(S.P.study) >= 10, 'P'],
+  ['E', 'Theme', 'var(--ink-g)', () => S.D.theme.trim() && words(S.D.analysis) >= 15, 'D'],
+  ['F', 'Color', 'var(--ink-l)', () => S.E.colors.trim() && S.E.to1.trim() && words(S.E.because) >= 4, 'E']
 ];
-const secId = l => l === 'Pg' ? 'P' : l;
 function totalWords() { return [S.A.summary, S.B.quote, S.B.explain, S.C.quote, S.C.effect, S.P.study, S.D.theme, S.D.analysis, S.E.because].reduce((n, s) => n + words(s), 0); }
 const fmtTime = s => s < 60 ? '<1 min' : Math.round(s / 60) + ' min';
 function refresh() {
   const key = $('#key');
-  key.innerHTML = CHECK.map(([l, n, c, f]) => `<button class="k ${f() ? 'ok' : ''}" data-go="${secId(l)}" title="${n}"><span class="badge ${l.length > 1 ? 'wide' : ''}" style="background:${c}">${l}</span>${n}</button>`).join('')
+  key.innerHTML = CHECK.map(([l, n, c, f, id]) => `<button class="k ${f() ? 'ok' : ''}" data-go="${id}" title="${n}"><span class="badge ${l.length > 1 ? 'wide' : ''}" style="background:${c}">${l}</span>${n}</button>`).join('')
     + `<button class="k ${Painter.dirty() ? 'ok' : ''}" data-go="page"><span class="badge" style="background:conic-gradient(#FF9EC7,#FFE45C,#9BE8A8,#8FD0F5,#FF9EC7)">✎</span>Colored</button>`
     + `<span class="sep"></span><span class="stat">${totalWords()} words</span><span class="stat">${fmtTime(S.secs)}</span><span class="saved" id="savedAt">${savedLabel}</span>`;
   $$('#key .k').forEach(b => b.onclick = () => goTo(b.dataset.go));
-  CHECK.forEach(([l, , , f]) => { const d = $(`[data-done="${secId(l)}"]`); const ok = !!f(); d.classList.toggle('ok', ok); d.textContent = ok ? 'done' : ''; });
+  CHECK.forEach(([l, , , f, id]) => { const d = $(`[data-done="${id}"]`); const ok = !!f(); d.classList.toggle('ok', ok); d.textContent = ok ? 'done' : ''; });
 }
 function goTo(id) {
   if (id === 'page') { showView('page'); return; }
-  showView('write'); const s = $('#s' + id); s.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  showView('write'); const s = $('#s' + id); const w = $('#sheetwrap');
+  w.scrollTo({ top: s.getBoundingClientRect().top - w.getBoundingClientRect().top + w.scrollTop - 10, behavior: 'smooth' });
   setTimeout(() => $('textarea,input,select', s)?.focus({ preventScroll: true }), 350);
 }
 function missing() { const m = CHECK.filter(c => !c[3]()).map(c => c[1]); if (!Painter.dirty()) m.push('coloring your page'); return m; }
@@ -1081,6 +1081,7 @@ function wireKeys() {
 }
 
 /* ============ boot ============ */
+window.addEventListener('scroll', () => { if (window.scrollY || window.scrollX) window.scrollTo(0, 0); });
 async function boot() {
   applyLook(); Painter.init(); wireChrome(); wireSheet(); wireSetup(); wireKeys();
   await loadLibrary(); applyPreset(); bindAll(); refresh();
@@ -1312,9 +1313,9 @@ const Exporter = (() => {
     L.push('A. SUMMARY', S.A.summary || '—', '');
     L.push('B. QUOTE ANALYSIS', `Quote: "${S.B.quote}" ${cite(S.B.page, S.B.panel)}`, `Explanation: ${S.B.explain || '—'}`, '');
     L.push('C. LITERARY ELEMENTS', `Element: ${elementName() || '—'}`, `Where: "${S.C.quote}" ${cite(S.C.page, S.C.panel)}`, `What it does: ${S.C.effect || '—'}`, '');
-    L.push('PAGE STUDY', S.P.study || '—', '');
-    L.push('D. THEME ANALYSIS', `Theme: ${S.D.theme || '—'}`, S.D.analysis || '—', '');
-    L.push('E. COLOR STUDY', colorSentence(), '');
+    L.push('D. PAGE STUDY', S.P.study || '—', '');
+    L.push('E. THEME ANALYSIS', `Theme: ${S.D.theme || '—'}`, S.D.analysis || '—', '');
+    L.push('F. COLOR STUDY', colorSentence(), '');
     L.push(`${totalWords()} words · ${fmtTime(S.secs)} · made with panel'd`);
     return L.join('\n');
   }
@@ -1374,10 +1375,10 @@ footer{margin-top:16px;display:flex;justify-content:space-between;gap:12px;font-
  <div class="sec"><h2>${badge('C', INK.C)}Literary Elements</h2><div class="lbl">Element</div><div class="ans"><b>${esc(elementName()) || '&nbsp;'}</b></div><div class="lbl">Where</div>${S.C.quote.trim() ? `<div class="q ans">${esc(S.C.quote)}</div>` : '<div class="q" style="height:.6in"></div>'}<div class="cite">${esc(cite(S.C.page, S.C.panel))}</div><div class="lbl">What it does</div>${P(S.C.effect)}</div>
 </div><div>
  <div class="top"><div><div class="page">${imgURL ? `<img src="${imgURL}" alt="">` : '<div class="none">No page chosen</div>'}</div><div class="pgno">Book page ${esc(S.page?.label || '—')}</div></div>
-  <div class="sec color"><h2>${badge('E', INK.E)}Color Study</h2>${listColors().length ? `<div class="sw">${listColors().map(([n, h]) => `<i title="${esc(n)}" style="background:${h}"></i>`).join('')}</div>` : ''}
+  <div class="sec color"><h2>${badge('F', INK.E)}Color Study</h2>${listColors().length ? `<div class="sw">${listColors().map(([n, h]) => `<i title="${esc(n)}" style="background:${h}"></i>`).join('')}</div>` : ''}
   I added the color(s) ${u(S.E.colors)} to ${toHTML} because ${S.E.because.trim() ? `<u style="font-weight:400">${esc(S.E.because.trim().replace(/^because\s+/i, ''))}</u>` : u('')}.</div></div>
- <div class="sec"><h2>${badge('Pg', INK.P)}Page Study</h2>${P(S.P.study)}</div>
- <div class="sec"><h2>${badge('D', INK.D)}Theme Analysis</h2><div class="theme"><div class="t">Theme: <span style="font-weight:400;font-family:'Source Serif 4',serif">${esc(S.D.theme)}</span></div>${P(S.D.analysis)}</div></div>
+ <div class="sec"><h2>${badge('D', INK.P)}Page Study</h2>${P(S.P.study)}</div>
+ <div class="sec"><h2>${badge('E', INK.D)}Theme Analysis</h2><div class="theme"><div class="t">Theme: <span style="font-weight:400;font-family:'Source Serif 4',serif">${esc(S.D.theme)}</span></div>${P(S.D.analysis)}</div></div>
 </div></div>
 <footer><span>${esc(m.name)}${m.klass ? ' · ' + esc(m.klass) : ''} · ${totalWords()} words · ${fmtTime(S.secs)}</span><span>Exported ${esc(stamp())} · panel’d</span></footer>
 </body></html>`;
@@ -1568,7 +1569,7 @@ footer{margin-top:16px;display:flex;justify-content:space-between;gap:12px;font-
       d.text(ix, iy - 13, `BOOK PAGE ${S.page?.label || '--'}`, 'H', 6.5, '#444444', 0.6);
     } else { d.strokeC(K).lw(2.4).rect(RX, PT - PH, PW, PH); d.text(RX + 60, PT - 150, 'No page chosen', 'B', 14, '#888888'); }
     const EX = 480, EW = 100;
-    head(EX, 692, 'E', 'Color', INK.E);
+    head(EX, 692, 'F', 'Color', INK.E);
     let sy = 668; listColors().slice(0, 8).forEach(([n, h], i) => { const x = EX + (i % 5) * 19, y = sy - 12 - Math.floor(i / 5) * 18; d.fill(h).strokeC(K).lw(0.8).rect(x, y, 14, 12, 'B'); });
     const ec = listColors().length ? Math.ceil(Math.min(8, listColors().length) / 5) * 18 + 4 : 0;
     const tos = [S.E.to1, S.E.to2, S.E.to3].map(s => s.trim()).filter(Boolean);
@@ -1576,17 +1577,17 @@ footer{margin-top:16px;display:flex;justify-content:space-between;gap:12px;font-
     if (tos.length === 0) runs.push({ t: '________', f: 'B' });
     tos.forEach((t, i) => { runs.push({ t, f: 'B', u: true }); if (i < tos.length - 1) runs.push({ t: tos.length === 2 ? ' and ' : i === tos.length - 2 ? ', and ' : ', ', f: 'R' }); });
     runs.push({ t: ' because ', f: 'R' }, { t: (S.E.because.trim().replace(/^because\s+/i, '') || '________________') + '.', f: 'R' });
-    d.box(runs, EX, sy - ec - 2, EW, PH - 34 - ec, 'E. Color Study', [10, 9.5, 9, 8.5, 8, 7.5], 1.45);
+    d.box(runs, EX, sy - ec - 2, EW, PH - 34 - ec, 'F. Color Study', [10, 9.5, 9, 8.5, 8, 7.5], 1.45);
     // Page study
-    head(RX, 372, 'Pg', 'Page Study', INK.P);
-    d.box([{ t: S.P.study, f: 'R' }], RX, 350, 344, 66, 'Page Study');
+    head(RX, 372, 'D', 'Page Study', INK.P);
+    d.box([{ t: S.P.study, f: 'R' }], RX, 350, 344, 66, 'D. Page Study');
     // Theme
-    head(RX, 276, 'D', 'Theme Analysis', INK.D);
+    head(RX, 276, 'E', 'Theme Analysis', INK.D);
     d.fill(K).rect(RX + 4, 46, 340, 202, 'f'); d.fill('#FFFFFF').strokeC(K).lw(1.2).rect(RX, 50, 340, 202, 'B');
     d.text(RX + 10, 236, 'Theme:', 'B', 10.5);
-    d.box([{ t: S.D.theme, f: 'R' }], RX + 50, 245.5, 280, 26, 'D. Theme', [10.5, 9.5, 8.5, 7.5]);
+    d.box([{ t: S.D.theme, f: 'R' }], RX + 50, 245.5, 280, 26, 'E. Theme', [10.5, 9.5, 8.5, 7.5]);
     d.strokeC('#1A1A1A').lw(0.6).line(RX + 10, 216, RX + 330, 216);
-    d.box([{ t: S.D.analysis, f: 'R' }], RX + 10, 210, 320, 152, 'D. Analysis');
+    d.box([{ t: S.D.analysis, f: 'R' }], RX + 10, 210, 320, 152, 'E. Analysis');
     // footer
     const fl = `${m.name}${m.klass ? ' · ' + m.klass : ''} · ${totalWords()} words · ${fmtTime(S.secs)}`.toUpperCase();
     const fr = `Exported ${stamp()} · panel'd`.toUpperCase();
