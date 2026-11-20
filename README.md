@@ -30,3 +30,14 @@ Then describe the folder in `library.json`:
 
 ## Student work
 Work autosaves on the device. Students hand in work with **Export → Download PDF**. To keep a copy they can reopen on any device, they use **Save → Save progress file** (a `.paneld` file).
+
+## Study types
+On the setup screen, students choose one of four study types: **Comic / Graphic Novel**, **Novel — Chapter Study**, **Page / Passage Annotation**, or **Political Cartoon**.
+- A link ending in `?type=annot` (or `novelch`, `cartoon`, `comic`) opens with that type already selected.
+- To put novel pages or cartoons in the class library, add `"kind": "novel"` or `"kind": "cartoon"` to the book entry in `library.json`. Cartoon labels can be words instead of page numbers:
+
+```json
+{ "id": "ush-cartoons", "title": "USH Political Cartoons", "kind": "cartoon",
+  "chapters": [ { "title": "11.5 Industrialization", "pages": [
+    { "src": "pages/cartoons/bosses-of-the-senate.jpg", "page": "Bosses of the Senate" } ] } ] }
+```

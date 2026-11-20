@@ -284,6 +284,53 @@ body[data-cmode=analysis] .canvaswrap .paint,body[data-cmode=analysis] .canvaswr
 .canvaswrap[data-tool=picker]{cursor:copy}
 .modeseg{display:flex;align-items:center;gap:10px;margin:2px 0 8px;flex-wrap:wrap}
 .seg.sm button{padding:5px 12px;font-size:12.5px}
+
+.kinds{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:12px 0 4px}
+.kind{appearance:none;display:grid;grid-template-columns:30px 1fr;grid-template-rows:auto auto;gap:0 10px;align-items:center;text-align:left;border:1px solid var(--line);border-radius:var(--r);background:var(--btn);padding:9px 10px;cursor:pointer;transition:transform .1s var(--snap)}
+.kind svg{grid-row:1/3;width:28px;height:28px}
+.kind b{font-family:"Zilla Slab",Georgia,serif;font-size:15.5px;line-height:1.15}
+.kind span{font-size:12px;color:var(--soft);line-height:1.3}
+.kind[aria-checked=true]{background:var(--ink);color:var(--paper);box-shadow:var(--shadow-sm)}
+.kind[aria-checked=true] span{color:var(--paper);opacity:.8}
+.kind:active{transform:translate(1px,1px)}
+#gsheet{display:none}
+body:not([data-kind=comic]) #sheet{display:none}
+body:not([data-kind=comic]) #gsheet{display:block}
+body[data-kind=novelch] #wPage,body[data-kind=novelch] #bPage,body[data-kind=novelch] [data-act=png],body[data-kind=novelch] .mtabs [data-view=page]{display:none!important}
+body[data-kind=novelch] main{grid-template-columns:minmax(0,1fr)}
+body[data-kind=novelch] main[data-view=page] #wSheet{display:flex!important}
+.canvaswrap[data-blend=normal] .paint,.canvaswrap[data-blend=normal] .stroke{mix-blend-mode:normal}
+.canvaswrap[data-tool=line],.canvaswrap[data-tool=arrow]{cursor:crosshair}
+.canvaswrap[data-tool=note],.canvaswrap[data-tool=stamp]{cursor:copy}
+.stamps{display:flex;gap:2px;padding:2px;border:1px solid var(--line);border-radius:var(--r);background:var(--field)}
+.stamps button{width:28px;height:26px;border:0;background:none;border-radius:calc(var(--r) - 2px);font-size:16px;font-weight:700;cursor:pointer;font-family:var(--ui);color:inherit}
+.stamps button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+#notes{position:absolute;inset:0;pointer-events:none;z-index:4}
+.note{position:absolute;pointer-events:auto;transform:translate(-13px,-13px)}
+.note .pin{width:26px;height:26px;border-radius:50% 50% 50% 4px;border:1.5px solid #1A1A1A;font:700 12px/1 var(--mono);color:#1A1A1A;display:grid;place-items:center;cursor:grab;box-shadow:2px 2px 0 rgba(0,0,0,.6);padding:0;touch-action:none}
+.note .card{display:none;position:absolute;left:32px;top:-4px;width:190px;border:1px solid #1A1A1A;box-shadow:3px 3px 0 rgba(0,0,0,.55);padding:6px 22px 6px 8px;transform:rotate(-1deg)}
+.note.left .card{left:auto;right:32px}
+.note.open .card{display:block;animation:pop .14s var(--spring)}
+.note textarea{width:100%;min-height:74px;border:0;background:transparent;font:14px/1.35 var(--serif);color:#1A1A1A;resize:vertical;outline:none}
+.note .del{position:absolute;top:2px;right:3px;border:0;background:none;font-size:16px;cursor:pointer;color:#1A1A1A;line-height:1}
+.noteslist ol{margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+.noteslist li{display:flex;gap:8px;align-items:flex-start;font-family:var(--serif);font-size:14.5px;line-height:1.4;cursor:pointer;padding:4px 6px;border-radius:6px}
+.noteslist li:hover{background:color-mix(in srgb,var(--sel) 45%,transparent)}
+.pinmini{flex:none;width:20px;height:20px;border-radius:50% 50% 50% 3px;border:1px solid #1A1A1A;font:700 10.5px/18px var(--mono);text-align:center;color:#1A1A1A}
+.empty-notes{font-family:var(--serif);font-size:13.5px;color:var(--soft);margin:4px 0}
+.skey{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin:2px 0 8px}
+.skey-i{appearance:none;display:flex;align-items:center;gap:6px;border:1px solid var(--rule);background:var(--paper);border-radius:6px;padding:4px 6px;cursor:pointer;font-size:12px;color:inherit;text-align:left}
+.skey-i b{font-size:16px;width:18px;text-align:center}
+.skey-i:hover{background:var(--sel);color:#1A1A1A}
+.checks{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 6px}
+.ck{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--rule);border-radius:999px;padding:4px 10px 4px 6px;font-family:var(--serif);font-size:14px;cursor:pointer}
+html[data-look=classic] .ck{border-radius:3px}
+.ck input{accent-color:var(--ink);width:16px;height:16px}
+.ck:has(input:checked){background:var(--sel);color:#1A1A1A;border-color:#1A1A1A}
+.rowin{display:grid;gap:10px}
+@media (max-width:880px){.kinds{grid-template-columns:1fr}.rowin{grid-template-columns:1fr!important}.skey{grid-template-columns:repeat(2,1fr)}}
+dialog .f{min-width:0}dialog .f input,dialog .f select{width:100%;min-width:0}
+@media (max-width:880px){.shead .cap{display:none}}
 </style></head><body>
 <header class="top">
   <div class="brand"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -337,22 +384,27 @@ body[data-cmode=analysis] .canvaswrap .paint,body[data-cmode=analysis] .canvaswr
     <div class="tools" id="tools">
       <div class="tgroup" role="toolbar" aria-label="Tools">
         <button class="tool" data-tool="brush" data-tip="Brush (B)" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 4l6 6-8.5 8.5-6-6z"/><path d="M5.5 12.5C3 14 3 18 2 21c3-1 7-1 8.5-3.5"/></svg></button>
-        <button class="tool st-only" data-tool="marker" data-tip="Highlighter (M)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 15l-3 3v3h6l3-3"/><path d="M9 15l7-11 5 4-6 10z"/></svg></button>
-        <button class="tool st-only" data-tool="fill" data-tip="Fill a shape (F)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l8-8 8 8-8 8z"/><path d="M20 15s2 2.5 2 4a2 2 0 0 1-4 0c0-1.5 2-4 2-4z" fill="currentColor"/></svg></button>
-        <button class="tool an-only" data-tool="circle" data-tip="Circle a zone (C)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="12" rx="9" ry="7"/></svg></button>
-        <button class="tool an-only" data-tool="box" data-tip="Box a panel (R)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="5" width="16" height="14" rx="1"/></svg></button>
-        <button class="tool an-only" data-tool="picker" data-tip="Pick a color from the art (I)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 4l5 5-2 2-5-5zM13 6l-8.5 8.5L4 20l5.5-.5L18 11"/></svg></button>
+        <button class="tool" data-tool="marker" data-tip="Highlighter (M)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 15l-3 3v3h6l3-3"/><path d="M9 15l7-11 5 4-6 10z"/></svg></button>
+        <button class="tool" data-tool="fill" data-tip="Fill a shape (F)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l8-8 8 8-8 8z"/><path d="M20 15s2 2.5 2 4a2 2 0 0 1-4 0c0-1.5 2-4 2-4z" fill="currentColor"/></svg></button>
+        <button class="tool" data-tool="circle" data-tip="Circle a zone (C)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="12" rx="9" ry="7"/></svg></button>
+        <button class="tool" data-tool="box" data-tip="Box a panel (R)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="5" width="16" height="14" rx="1"/></svg></button>
+        <button class="tool" data-tool="picker" data-tip="Pick a color from the art (I)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 4l5 5-2 2-5-5zM13 6l-8.5 8.5L4 20l5.5-.5L18 11"/></svg></button>
+        <button class="tool" data-tool="line" data-tip="Underline / line (L)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 18h16"/><path d="M6 14l4-8 4 8" opacity=".5"/></svg></button>
+        <button class="tool" data-tool="arrow" data-tip="Arrow (A)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 19L19 5M10 5h9v9"/></svg></button>
+        <button class="tool" data-tool="note" data-tip="Sticky note (N)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v11l-5 5H4z"/><path d="M15 20v-5h5"/></svg></button>
+        <button class="tool" data-tool="stamp" data-tip="Symbol stamp (S)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg></button>
         <button class="tool" data-tool="eraser" data-tip="Eraser (E)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 20l-5-5 11-11 7 7-9 9zM8 20h13M7 11l7 7"/></svg></button>
         <button class="tool" data-tool="hand" data-tip="Move around (H / hold Space)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V12M11 11V4a1.5 1.5 0 0 1 3 0v7M14 11V5.5a1.5 1.5 0 0 1 3 0V12M17 10a1.5 1.5 0 0 1 3 0v5a7 7 0 0 1-7 7h-1c-2.6 0-4-1-5.6-3L4 15.5a1.6 1.6 0 0 1 2.4-2L8 15"/></svg></button>
       </div>
       <div class="swatches" id="swatches" role="radiogroup" aria-label="Colors"></div>
+      <div class="stamps" id="stamps" hidden></div>
       <label class="size"><span class="cap">Size</span><input type="range" id="size" min="3" max="80" value="18"></label>
 
     </div>
     <div class="stage picking" id="stage">
       <div class="canvaswrap" id="cw" data-tool="brush">
         <canvas id="cBase"></canvas><canvas id="cPaint" class="paint"></canvas><canvas id="cStroke" class="stroke"></canvas>
-        <div class="cursor" id="cursor"></div>
+        <div class="cursor" id="cursor"></div><div id="notes"></div>
       </div>
       <div class="picker" id="picker">
         <div class="pk">
@@ -360,9 +412,10 @@ body[data-cmode=analysis] .canvaswrap .paint,body[data-cmode=analysis] .canvaswr
             <div class="tabs" role="tablist">
               <button role="tab" id="tLib" aria-selected="true">Class library</button>
               <button role="tab" id="tUp" aria-selected="false">Upload pages</button>
+              <button role="tab" id="tTxt" aria-selected="false" hidden>Paste text</button>
             </div></header>
           <div id="pLib">
-            <div class="bar"><span class="cap">Chapter</span><select id="libChapter"></select><span class="cap" id="libCount" style="margin-left:auto"></span></div>
+            <div class="bar"><span class="cap" id="libBookWrap" hidden>Collection <select id="libBook"></select></span><span class="cap">Section</span><select id="libChapter"></select><span class="cap" id="libCount" style="margin-left:auto"></span></div>
             <div class="thumbs" id="libThumbs"></div>
           </div>
           <div id="pUp" hidden>
@@ -375,6 +428,11 @@ body[data-cmode=analysis] .canvaswrap .paint,body[data-cmode=analysis] .canvaswr
               </div>
             </div>
             <div class="thumbs" id="upThumbs"></div>
+          </div>
+          <div id="pTxt" hidden style="padding:14px">
+            <p style="margin:0 0 8px;font-family:var(--serif);color:var(--soft)">Paste or type the passage. Panel'd turns it into a page with wide margins and line numbers you can annotate.</p>
+            <textarea id="txtIn" class="copybox" style="height:220px;font-family:var(--serif);font-size:15px" placeholder="Paste the passage here…"></textarea>
+            <div style="display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap"><label class="cap">Page # <input id="txtPage" style="width:70px;border:1px solid var(--line);border-radius:var(--r);background:var(--field);padding:5px 6px"></label><span class="spacer"></span><button class="btn primary" type="button" id="bMakePage">Make my page</button></div>
           </div>
         </div>
       </div>
@@ -393,7 +451,7 @@ body[data-cmode=analysis] .canvaswrap .paint,body[data-cmode=analysis] .canvaswr
   </section>
 
   <section class="win" id="wSheet" aria-label="Chapter study">
-    <div class="tb"><i class="box"></i><span>Chapter Study</span></div>
+    <div class="tb"><i class="box"></i><span id="sheetTitle">Chapter Study</span></div>
     <div class="sheetwrap" id="sheetwrap">
       <article class="sheet" id="sheet">
         <div class="shead"><h1>Chapter Study</h1><span class="cap" id="presetTag"></span></div>
@@ -464,6 +522,7 @@ body[data-cmode=analysis] .canvaswrap .paint,body[data-cmode=analysis] .canvaswr
         </section>
         <datalist id="dlChapters"></datalist><datalist id="dlThemes"></datalist>
       </article>
+      <article class="sheet" id="gsheet"></article>
     </div>
   </section>
 </main>
@@ -493,16 +552,20 @@ body[data-cmode=analysis] .canvaswrap .paint,body[data-cmode=analysis] .canvaswr
 <path d="M314 146 h70 M314 166 h46" stroke="#1A1A1A" stroke-width="9" stroke-linecap="round"/>
 <g clip-path="url(#pd-br)"><rect x="270" y="282" width="158" height="146" fill="#8FD0F5"/><circle cx="286" cy="300" r="5" fill="#1A1A1A"/><circle cx="286" cy="324" r="5" fill="#1A1A1A"/><circle cx="286" cy="348" r="5" fill="#1A1A1A"/><circle cx="286" cy="372" r="5" fill="#1A1A1A"/><circle cx="286" cy="396" r="5" fill="#1A1A1A"/><circle cx="310" cy="300" r="5" fill="#1A1A1A"/><circle cx="310" cy="324" r="5" fill="#1A1A1A"/><circle cx="310" cy="348" r="5" fill="#1A1A1A"/><circle cx="310" cy="372" r="5" fill="#1A1A1A"/><circle cx="310" cy="396" r="5" fill="#1A1A1A"/><circle cx="334" cy="300" r="5" fill="#1A1A1A"/><circle cx="334" cy="324" r="5" fill="#1A1A1A"/><circle cx="334" cy="348" r="5" fill="#1A1A1A"/><circle cx="334" cy="372" r="5" fill="#1A1A1A"/><circle cx="334" cy="396" r="5" fill="#1A1A1A"/><circle cx="358" cy="300" r="5" fill="#1A1A1A"/><circle cx="358" cy="324" r="5" fill="#1A1A1A"/><circle cx="358" cy="348" r="5" fill="#1A1A1A"/><circle cx="358" cy="372" r="5" fill="#1A1A1A"/><circle cx="358" cy="396" r="5" fill="#1A1A1A"/><circle cx="382" cy="300" r="5" fill="#1A1A1A"/><circle cx="382" cy="324" r="5" fill="#1A1A1A"/><circle cx="382" cy="348" r="5" fill="#1A1A1A"/><circle cx="382" cy="372" r="5" fill="#1A1A1A"/><circle cx="382" cy="396" r="5" fill="#1A1A1A"/><circle cx="406" cy="300" r="5" fill="#1A1A1A"/><circle cx="406" cy="324" r="5" fill="#1A1A1A"/><circle cx="406" cy="348" r="5" fill="#1A1A1A"/><circle cx="406" cy="372" r="5" fill="#1A1A1A"/><circle cx="406" cy="396" r="5" fill="#1A1A1A"/></g>
 <rect x="270" y="282" width="158" height="146" fill="none" stroke="#1A1A1A" stroke-width="14"/>
-</svg><div><h3>New chapter study</h3><p style="margin:0;color:var(--soft)">Pick a page, color it, and analyze it.</p></div></div>
+</svg><div><h3>Start a new study</h3><p style="margin:0;color:var(--soft)">What are you studying today?</p></div></div>
     <div id="resume" hidden style="border:1px solid var(--line);border-radius:var(--r);padding:10px 12px;margin:10px 0;background:var(--field)">
       <strong>You have a draft on this device</strong><p id="resumeInfo" style="margin:2px 0 8px"></p>
       <button type="button" class="btn primary" id="bResume">Keep working on it</button>
     </div>
+    <div class="kinds" id="kinds" role="radiogroup" aria-label="What are you studying?"><button type="button" class="kind" data-kind="comic" role="radio" aria-checked="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18"/><path d="M3 12h18M11 3v9M14 12v9"/></svg><b>Comic / Graphic Novel</b><span>Chapter study + color</span></button><button type="button" class="kind" data-kind="novelch" role="radio" aria-checked="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 5c3-1.5 6-1.5 9 0v15c-3-1.5-6-1.5-9 0zM21 5c-3-1.5-6-1.5-9 0v15c3-1.5 6-1.5 9 0z"/></svg><b>Novel — Chapter Study</b><span>Summary, quotes, character, theme</span></button><button type="button" class="kind" data-kind="annot" role="radio" aria-checked="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h10l4 4v14H5z"/><path d="M8 10h8M8 14h5" /><rect x="13" y="13" width="6" height="6" fill="currentColor" opacity=".35"/></svg><b>Page / Passage Annotation</b><span>Highlight, symbols, sticky notes</span></button><button type="button" class="kind" data-kind="cartoon" role="radio" aria-checked="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="14"/><circle cx="9" cy="11" r="3"/><path d="M14 9h4M14 13h3M7 21h10"/></svg><b>Political Cartoon</b><span>Sourcing, HIPP, message</span></button></div>
     <div class="f"><label class="cap" for="sName">Your name</label><input id="sName" autocomplete="name" required><span class="err">Add your name so your teacher knows whose work this is.</span></div>
     <div class="grid2">
-      <div class="f"><label class="cap" for="sBook">Book</label><select id="sBook" required></select><span class="err">Choose your book.</span></div>
+      <div class="f" data-kinds="comic"><label class="cap" for="sBook">Book</label><select id="sBook" required></select><span class="err">Choose your book.</span></div>
       <div class="f" id="fOther" hidden><label class="cap" for="sBookOther">Book title</label><input id="sBookOther"><span class="err">Type the book title.</span></div>
-      <div class="f"><label class="cap" for="sChapter">Chapter</label><input id="sChapter" list="dlChapters" required><span class="err">Which chapter?</span></div>
+      <div class="f" data-kinds="novelch annot cartoon"><label class="cap" for="sTitle" id="lTitle">Book title</label><input id="sTitle" list="dlNovels"><span class="err">Type the title.</span></div>
+      <div class="f" data-kinds="cartoon"><label class="cap" for="sCourse">Course</label><select id="sCourse"><option value="ush">U.S. History &amp; Government (Grade 11)</option><option value="gh2">Global History &amp; Geography II (Grade 10)</option><option value="other">Other course / AP</option></select></div>
+      <div class="f" data-kinds="cartoon"><label class="cap" for="sUnit">Unit</label><input id="sUnit" list="dlUnitsSetup" placeholder="Choose or type a unit"><datalist id="dlUnitsSetup"></datalist><span class="err">Which unit is this cartoon for?</span></div>
+      <div class="f" data-kinds="comic novelch annot"><label class="cap" for="sChapter" id="lChapter">Chapter</label><input id="sChapter" list="dlChapters"><span class="err">Which chapter?</span></div><datalist id="dlNovels"></datalist>
       <div class="f" id="fArt" hidden><label class="cap" for="sArt">The art is</label><select id="sArt"><option value="bw">Black &amp; white</option><option value="color">In color</option></select></div>
       <div class="f"><label class="cap" for="sClass">Class / period <span style="text-transform:none;letter-spacing:0">(optional)</span></label><input id="sClass"></div>
     </div>
@@ -513,8 +576,8 @@ body[data-cmode=analysis] .canvaswrap .paint,body[data-cmode=analysis] .canvaswr
 
 <dialog id="dHelp" class="wide"><div class="db">
   <h3>How Panel’d works</h3>
-  <p><b>1.</b> Choose a page from the class library, or upload your own page image. <b>2.</b> Color the page. <b>3.</b> Fill in sections A–F. <b>4.</b> Export a PDF and turn it in.</p>
-  <div class="helpgrid">
+  <p id="helpIntro"><b>1.</b> Choose a page from the class library, or upload your own page image. <b>2.</b> Color the page. <b>3.</b> Fill in sections A–F. <b>4.</b> Export a PDF and turn it in.</p>
+  <div class="helpgrid" id="helpgrid">
     <span class="badge" style="background:var(--ink-y)">A</span><div><b>Summary</b> — Retell the chapter's key events in your own words: who, what, where, and why it matters.</div>
     <span class="badge" style="background:var(--ink-p)">B</span><div><b>Quote Analysis</b> — Copy one important line exactly, cite it (Page #, Panel #), and explain what it reveals.</div>
     <span class="badge" style="background:var(--ink-b)">C</span><div><b>Literary Elements</b> — Name one element (symbolism, irony, a close-up…), show where it appears, and explain what it does.</div>
@@ -527,6 +590,7 @@ body[data-cmode=analysis] .canvaswrap .paint,body[data-cmode=analysis] .canvaswr
   <div class="shortcuts">
     <div><span>Brush · Highlighter · Fill</span><span><kbd>B</kbd> <kbd>M</kbd> <kbd>F</kbd></span></div>
     <div><span>Circle · Box · Color picker</span><span><kbd>C</kbd> <kbd>R</kbd> <kbd>I</kbd></span></div>
+    <div><span>Line · Arrow · Note · Stamp</span><span><kbd>L</kbd> <kbd>A</kbd> <kbd>N</kbd> <kbd>S</kbd></span></div>
     <div><span>Eraser · Move</span><span><kbd>E</kbd> <kbd>H</kbd> / hold <kbd>Space</kbd></span></div>
     <div><span>Brush size</span><span><kbd>[</kbd> <kbd>]</kbd></span></div>
     <div><span>Zoom in / out / fit</span><span><kbd>+</kbd> <kbd>−</kbd> <kbd>0</kbd></span></div>
@@ -677,6 +741,162 @@ const PALETTE = [
   ['Blue','#5BA8E8'],['Sky blue','#8FD0F5'],['Teal','#4CC3B5'],['Green','#6CC77A'],['Brown','#A9764B'],['Gray','#9A9A9A']
 ];
 
+/* =====================================================================
+   STUDY TYPES — one config drives the sheet, checklist, exports and the
+   printable / Google Docs worksheets.
+   Field types: ta (lined box) · in (one line) · quote (quote box) ·
+   cite (page + panel/line) · sel (dropdown, optional "Other…") ·
+   checks (checkboxes) · row (several short inputs) · notes (auto list
+   of the sticky notes on the page) · key (annotation symbol key) · prompt
+   ===================================================================== */
+const STAMPS = [
+  ['★', 'Important', 'This matters — a key idea or detail'],
+  ['?', 'Question', 'Something I’m confused about or wondering'],
+  ['!', 'Surprise', 'Something unexpected or shocking'],
+  ['♥', 'Connection', 'Connects to me, another text, or the world'],
+  ['✎', 'Word choice', 'A powerful word, phrase, or vocab word'],
+  ['∞', 'Theme', 'A clue to a bigger message or theme'],
+  ['⚡', 'Conflict', 'A struggle or tension'],
+  ['✓', 'Agree', 'I agree with this / this makes sense']
+];
+
+const NOVEL_ELEMENTS = [
+  ['Characterization', 'How the author shows who a character is — actions, words, thoughts, how others react.'],
+  ['Conflict', 'A struggle: character vs. character, society, nature, or self.'],
+  ['Symbolism', 'An object, image, or color that stands for a bigger idea.'],
+  ['Imagery', 'Vivid description that appeals to the five senses.'],
+  ['Figurative language', 'Simile, metaphor, personification, hyperbole — language that isn’t literal.'],
+  ['Foreshadowing', 'A hint about something that will happen later.'],
+  ['Flashback', 'The story jumps back to an earlier time.'],
+  ['Irony', 'A gap between what is expected and what happens, or what is said and what is meant.'],
+  ['Point of view', 'Who tells the story and how much they know.'],
+  ['Tone', 'The author’s attitude toward the subject.'],
+  ['Mood', 'The feeling the passage creates for the reader.'],
+  ['Setting', 'Time and place — and how it shapes the characters or mood.'],
+  ['Dialogue', 'What characters say, and what it reveals.'],
+  ['Motif', 'An image, idea, or phrase that repeats across the book.'],
+  ['Allusion', 'A reference to a real person, event, or another work.'],
+  ['Diction (word choice)', 'Specific words the author chose and the effect they have.'],
+  ['Juxtaposition', 'Two things placed side by side so the contrast stands out.'],
+  ['Other…', '']
+];
+
+const CARTOON_TECHNIQUES = ['Symbolism', 'Exaggeration', 'Caricature', 'Labeling', 'Analogy', 'Irony', 'Juxtaposition', 'Stereotype'];
+
+const COURSES = {
+  ush: { label: 'U.S. History & Government (Grade 11)', units: [
+    '11.1 Colonial Foundations (1607–1763)', '11.2 Constitutional Foundations (1763–1824)', '11.3 Expansion, Nationalism, and Sectionalism (1800–1865)',
+    '11.4 Post–Civil War Era (1865–1900)', '11.5 Industrialization and Urbanization (1870–1920)', '11.6 The Rise of American Power (1890–1920)',
+    '11.7 Prosperity and Depression (1919–1939)', '11.8 World War II (1935–1945)', '11.9 Cold War (1945–1990)',
+    '11.10 Social and Economic Change / Domestic Issues (1945–present)', '11.11 The United States in a Globalized World (1990–present)'] },
+  gh2: { label: 'Global History & Geography II (Grade 10)', units: [
+    '10.1 The World in 1750', '10.2 Enlightenment, Revolution, and Nationalism', '10.3 Causes and Effects of the Industrial Revolution',
+    '10.4 Imperialism', '10.5 Unresolved Global Conflict (1914–1945)', '10.6 Unresolved Global Conflict (1945–1991: The Cold War)',
+    '10.7 Decolonization and Nationalism (1900–2000)', '10.8 Tensions Between Traditional Cultures and Modernization',
+    '10.9 Globalization and a Changing Global Environment (1990–present)', '10.10 Human Rights Violations'] },
+  other: { label: 'Other course / AP', units: [] }
+};
+
+const NOVEL_THEMES = ['Identity and belonging', 'Coming of age', 'Family', 'Friendship and loyalty', 'Power and control', 'Prejudice and injustice', 'Courage and fear', 'Love and loss', 'Freedom', 'Hope and resilience', 'Truth and deception', 'Home'];
+
+const MODES = {
+  comic: { label: 'Comic / Graphic Novel', sub: 'Chapter study with a page to color or analyze', icon: 'comic' },
+
+  novelch: {
+    label: 'Novel — Chapter Study', sub: 'Summary, quotes, elements, character, theme', icon: 'book', page: false,
+    meta: ['Name', 'Book', 'Chapter', 'Date'], cite: 'Page',
+    sections: [
+      { id: 'A', title: 'Summary', ink: 'y', hint: 'What happens in this chapter? Who, what, where — and why it matters.',
+        fields: [{ t: 'ta', k: 'A_summary', ph: 'In this chapter…', rows: 4 }],
+        req: [['A_summary', 12]], stems: ['In this chapter,', 'At the beginning,', 'After that,', 'The turning point is when', 'By the end,', 'This matters because'] },
+      { id: 'B', title: 'Quote Analysis', ink: 'p', hint: 'Pick a line that matters. Copy it exactly.',
+        fields: [{ t: 'quote', k: 'B_quote', label: 'Quote', ph: 'Type the exact words…' }, { t: 'cite', page: 'B_page', line: 'B_para', lineLabel: 'Paragraph' },
+          { t: 'ta', k: 'B_explain', label: 'Explanation', ph: 'This quote shows…', rows: 3 }],
+        req: [['B_quote', 1], ['B_explain', 8]], stems: ['This quote shows that', 'The word “___” suggests', 'This reveals that ___ feels', 'Here, the author wants us to understand', 'This connects to'] },
+      { id: 'C', title: 'Literary Elements', ink: 'b', hint: 'Find one element the author uses.',
+        fields: [{ t: 'sel', k: 'C_element', label: 'Element', opts: 'NOVEL_ELEMENTS', other: 'C_other' }, { t: 'quote', k: 'C_quote', label: 'Where you see it', ph: 'Quote it or describe the moment…' },
+          { t: 'cite', page: 'C_page', line: 'C_para', lineLabel: 'Paragraph' }, { t: 'ta', k: 'C_effect', label: 'What it does', ph: 'The author uses ___ to…', rows: 2 }],
+        req: [['C_element', 1], ['C_quote', 1], ['C_effect', 5]], stems: ['The author uses ___ to', 'This element shows', 'This makes the reader feel', 'This helps develop the idea that'] },
+      { id: 'D', title: 'Character Study', ink: 'o', hint: 'Choose a character who matters in this chapter. What do we learn about them?',
+        fields: [{ t: 'row', items: [{ k: 'D_char', label: 'Character', ph: 'Name' }, { k: 'D_trait', label: 'Trait or change', ph: 'e.g. stubborn, growing braver' }] },
+          { t: 'quote', k: 'D_quote', label: 'Evidence', ph: 'What they say, do, or think…' }, { t: 'cite', page: 'D_page', line: 'D_para', lineLabel: 'Paragraph' },
+          { t: 'ta', k: 'D_explain', label: 'What it shows', ph: 'This shows that ___ is ___ because…', rows: 3 }],
+        req: [['D_char', 1], ['D_trait', 1], ['D_explain', 8]], stems: ['This shows that', 'Unlike before,', 'This choice reveals', 'Other characters react by', 'This matters because'] },
+      { id: 'E', title: 'Theme Analysis', ink: 'g', box: true, prompt: 'What does this chapter suggest about people or life? Say it as a full sentence, not one word.',
+        fields: [{ t: 'in', k: 'E_theme', label: 'Theme (a message about life, not one word)', ph: 'The author suggests that…', list: 'NOVEL_THEMES' },
+          { t: 'ta', k: 'E_analysis', label: 'Analysis', ph: 'Use evidence from the chapter…', rows: 5 }],
+        req: [['E_theme', 3], ['E_analysis', 15]], stems: ['The author suggests that', 'One message of this chapter is', 'This is shown when', 'For example, on page ___,', 'This connects to the whole book because'] },
+      { id: 'F', title: 'Connect & Question', ink: 'l', hint: 'Make a connection, then ask a real question and predict.',
+        fields: [{ t: 'sel', k: 'F_type', label: 'Connection type', opts: ['Text-to-self', 'Text-to-text', 'Text-to-world'] },
+          { t: 'ta', k: 'F_connect', label: 'My connection', ph: 'This reminds me of… because…', rows: 2 },
+          { t: 'in', k: 'F_question', label: 'A question I still have', ph: 'Why did…?' }, { t: 'in', k: 'F_predict', label: 'My prediction', ph: 'I think ___ will ___ because…' }],
+        req: [['F_type', 1], ['F_connect', 6], ['F_question', 3]], stems: ['This reminds me of', 'This is similar to', 'In the real world,', 'I wonder why', 'I predict that'] }
+    ]
+  },
+
+  annot: {
+    label: 'Novel — Page / Passage Annotation', sub: 'Highlight, underline, symbols, and sticky notes in the margins', icon: 'pen', page: true,
+    meta: ['Name', 'Text', 'Chapter / pages', 'Date'], cite: 'Page', blend: 'multiply',
+    sections: [
+      { id: 'A', title: 'Gist', ink: 'y', hint: 'In 2–3 sentences: what is happening in this page or passage?',
+        fields: [{ t: 'ta', k: 'A_gist', ph: 'In this passage…', rows: 3 }], req: [['A_gist', 10]],
+        stems: ['In this passage,', 'The narrator', 'The main event is', 'This is important because'] },
+      { id: 'B', title: 'Margin Notes', ink: 'p', hint: 'Use the sticky-note tool to put at least 3 notes on the page — questions, reactions, connections, or what a line means. They collect here.',
+        fields: [{ t: 'key' }, { t: 'notes' }], req: [['notes', 3]] },
+      { id: 'C', title: 'Key Line', ink: 'b', hint: 'Choose the strongest line on the page. Highlight it, then explain it.',
+        fields: [{ t: 'quote', k: 'C_quote', label: 'Line', ph: 'Copy it exactly…' }, { t: 'cite', page: 'C_page', line: 'C_line', lineLabel: 'Line' },
+          { t: 'ta', k: 'C_explain', label: 'Why it matters', ph: 'This line matters because…', rows: 3 }],
+        req: [['C_quote', 1], ['C_explain', 8]], stems: ['This line matters because', 'The word “___” suggests', 'This reveals', 'Without this line,'] },
+      { id: 'D', title: 'Author’s Craft', ink: 'o', hint: 'Name a choice the author made on this page and its effect.',
+        fields: [{ t: 'sel', k: 'D_element', label: 'Element', opts: 'NOVEL_ELEMENTS', other: 'D_other' },
+          { t: 'ta', k: 'D_effect', label: 'Where + effect', ph: 'In line ___, the author uses ___ to…', rows: 3 }],
+        req: [['D_element', 1], ['D_effect', 8]], stems: ['The author uses ___ to', 'This creates a ___ mood', 'This makes the reader', 'This shows'] },
+      { id: 'E', title: 'Big Question', ink: 'g', box: true, prompt: 'Zoom out: what bigger idea or theme does this page connect to?',
+        fields: [{ t: 'in', k: 'E_question', label: 'My big question', ph: 'Why…? / What if…?' },
+          { t: 'ta', k: 'E_connect', label: 'Connection to a theme', ph: 'This page connects to the idea that…', rows: 3 }],
+        req: [['E_question', 3], ['E_connect', 8]], stems: ['This connects to the idea that', 'I wonder if', 'This makes me think about', 'Across the book,'] }
+    ]
+  },
+
+  cartoon: {
+    label: 'Political Cartoon Analysis', sub: 'Source it, observe, decode techniques, HIPP, message', icon: 'cartoon', page: true,
+    meta: ['Name', 'Course', 'Unit', 'Date'], cite: 'Zone', blend: 'normal',
+    sections: [
+      { id: 'A', title: 'Source & Context', ink: 'y', hint: 'Who made this, when, and where was it published? What was happening at the time?',
+        fields: [{ t: 'row', items: [{ k: 'A_artist', label: 'Cartoonist', ph: 'Name or unknown' }, { k: 'A_pub', label: 'Published in', ph: 'Newspaper / magazine' }, { k: 'A_date', label: 'Date', ph: 'Year' }] },
+          { t: 'ta', k: 'A_context', label: 'Historical circumstances', ph: 'This cartoon was created when… / In the years before this,…', rows: 3 }],
+        req: [['A_date', 1], ['A_context', 12]], stems: ['This cartoon was created during', 'At this time,', 'In the years before this,', 'This was a response to'] },
+      { id: 'B', title: 'Observe', ink: 'p', hint: 'Mark the cartoon: circle or box what you see and number it with sticky notes. List it here.',
+        fields: [{ t: 'ta', k: 'B_people', label: 'People / figures (who or what do they stand for?)', ph: 'The man in the top hat represents…', rows: 2 },
+          { t: 'ta', k: 'B_objects', label: 'Objects & symbols', ph: 'The money bag…', rows: 2 },
+          { t: 'ta', k: 'B_words', label: 'Words, labels & caption', ph: 'The label says… The caption reads…', rows: 2 }, { t: 'notes' }],
+        req: [['B_people', 3], ['B_objects', 3]] },
+      { id: 'C', title: 'Techniques', ink: 'b', hint: 'Which persuasive techniques does the cartoonist use? Check all that apply, then explain one.',
+        fields: [{ t: 'checks', k: 'C_tech', opts: CARTOON_TECHNIQUES },
+          { t: 'ta', k: 'C_explain', label: 'Explain one', ph: 'The cartoonist uses ___ when ___ to show…', rows: 3 }],
+        req: [['C_tech', 1], ['C_explain', 10]], stems: ['The cartoonist exaggerates', 'The ___ symbolizes', 'By labeling ___, the cartoonist', 'This comparison suggests'] },
+      { id: 'D', title: 'Sourcing (HIPP)', ink: 'o', hint: 'Point of view, purpose, and audience — then decide how reliable this is as evidence.',
+        fields: [{ t: 'in', k: 'D_pov', label: 'Point of view (what does the cartoonist believe?)', ph: 'The cartoonist believes…' },
+          { t: 'in', k: 'D_purpose', label: 'Purpose (why make it?)', ph: 'To criticize / persuade / warn…' },
+          { t: 'in', k: 'D_audience', label: 'Intended audience', ph: 'Readers of…, voters, workers…' },
+          { t: 'ta', k: 'D_reliability', label: 'Reliability: how does the point of view, purpose, audience, or bias affect this cartoon as evidence?', ph: 'Because the cartoonist…, this cartoon is reliable/limited as evidence of… because…', rows: 3 }],
+        req: [['D_pov', 3], ['D_purpose', 2], ['D_reliability', 12]], stems: ['The cartoonist’s point of view is', 'The purpose of this cartoon is to', 'The intended audience was', 'This makes it reliable evidence of', 'This limits its reliability because'] },
+      { id: 'E', title: 'Message', ink: 'g', box: true, prompt: 'In one sentence: what is the cartoonist arguing?',
+        fields: [{ t: 'in', k: 'E_message', label: 'Main message / claim', ph: 'The cartoonist argues that…' },
+          { t: 'ta', k: 'E_evidence', label: 'Evidence from the cartoon', ph: 'This is shown by…', rows: 3 }],
+        req: [['E_message', 6], ['E_evidence', 8]], stems: ['The cartoonist argues that', 'This is shown by', 'The ___ in the cartoon represents', 'Together, these details suggest'] },
+      { id: 'F', title: 'Connect', ink: 'l', hint: 'Connect this cartoon to the history you’re studying.',
+        fields: [{ t: 'sel', k: 'F_rel', label: 'Relationship', opts: ['Cause & effect', 'Turning point', 'Similarity & difference', 'Continuity & change'] },
+          { t: 'ta', k: 'F_connect', label: 'Explain the connection to an event, person, or development', ph: 'This cartoon connects to… because…', rows: 3 },
+          { t: 'in', k: 'F_disagree', label: 'Who in this time period might disagree, and why?', ph: '…would disagree because…' }],
+        req: [['F_rel', 1], ['F_connect', 12]], stems: ['This cartoon connects to', 'As a result,', 'This was a turning point because', 'Similarly,', 'In contrast,'] }
+    ]
+  }
+};
+const INKS = { y: '#FFE45C', p: '#FF9EC7', b: '#8FD0F5', o: '#FFC27A', g: '#9BE8A8', l: '#CBB4F2' };
+const optsOf = o => typeof o === 'string' ? ({ NOVEL_ELEMENTS: NOVEL_ELEMENTS.map(e => e[0]) })[o] || [] : o;
+if (typeof module !== 'undefined') module.exports = { MODES, INKS, STAMPS, NOVEL_ELEMENTS, COURSES, CARTOON_TECHNIQUES, NOVEL_THEMES, optsOf };
+
 'use strict';
 /* ============ tiny helpers ============ */
 const $ = (s, r = document) => r.querySelector(s);
@@ -706,7 +926,7 @@ const fileSafe = s => String(s || '').replace(/[\\/:*?"<>|]+/g, '').replace(/\s+
 
 /* ============ state ============ */
 const blank = () => ({
-  v: 1, meta: { name: '', klass: '', book: '', bookKey: '', preset: 'generic', chapter: '', date: '' },
+  v: 1, kind: 'comic', f: {}, notes: [], meta: { name: '', klass: '', book: '', bookKey: '', preset: 'generic', chapter: '', date: '', course: '', title: '' },
   page: null, A: { summary: '' }, B: { quote: '', page: '', panel: '', explain: '' },
   C: { element: '', other: '', quote: '', page: '', panel: '', effect: '' }, P: { study: '' },
   D: { theme: '', analysis: '' }, E: { mode: 'study', colors: '', to1: '', to2: '', to3: '', page: '', panel: '', meaning: '', because: '' }, used: {}, secs: 0
@@ -721,7 +941,7 @@ let LIB = { books: [] };
 function normLibrary(j) {
   const books = (j && j.books) || [];
   return books.map((b, bi) => ({
-    id: b.id || ('book' + bi), title: b.title || 'Book', preset: b.preset || 'generic', color: !!b.color,
+    id: b.id || ('book' + bi), title: b.title || 'Book', preset: b.preset || 'generic', color: !!b.color, kind: b.kind || 'comic',
     chapters: (b.chapters || []).map(c => {
       let pages = [];
       if (Array.isArray(c.pages)) pages = c.pages.map((p, i) => typeof p === 'string' ? { src: p, label: String((c.firstPage || 1) + i) } : { src: p.src, label: String(p.page ?? p.label ?? (c.firstPage || 1) + i) });
@@ -748,7 +968,7 @@ const libBook = () => S.meta.bookKey.startsWith('lib:') ? LIB.books.find(b => 'l
 function fillBookSelect() {
   const sel = $('#sBook'); sel.innerHTML = '<option value="">Choose…</option>';
   const add = (v, t) => { const o = document.createElement('option'); o.value = v; o.textContent = t; sel.appendChild(o); };
-  LIB.books.forEach(b => add('lib:' + b.id, b.title + (b.chapters.some(c => c.pages.length) ? '  (class library)' : '')));
+  LIB.books.filter(b => (b.kind || 'comic') === 'comic').forEach(b => add('lib:' + b.id, b.title + (b.chapters.some(c => c.pages.length) ? '  (class library)' : '')));
   if (!LIB.books.some(b => b.preset === 'persepolis')) add('preset:persepolis', 'Persepolis');
   add('other', 'Another graphic novel…');
 }
@@ -775,18 +995,26 @@ function applyColorMode() {
   $('#colorHint').textContent = an ? (p.analysisHint || PRESETS.generic.analysisHint) : p.colorHint;
   $$('#segColor button').forEach(b => b.setAttribute('aria-pressed', b.dataset.v === S.E.mode));
   $$('[data-k^="E."]').forEach(el => { el.value = getK(el.dataset.k) ?? ''; el._fit?.(); });
-  Painter.setMode(an ? 'analysis' : 'study'); renderUsed();
+  if (kind() === 'comic') Painter.setMode(an ? 'analysis' : 'study'); renderUsed();
+}
+function applyKind() {
+  document.body.dataset.kind = kind();
+  if (kind() !== 'comic') Painter.setMode(kind());
+  else Painter.setMode(S.E.mode === 'analysis' ? 'analysis' : 'study');
+  renderGeneric(); Notes.render(); updateTitle(); updatePageTitle(); $('#sheetTitle').textContent = SHEET_TITLE[kind()];
+  if (!MODE().page && kind() !== 'comic') showView('write');
 }
 function clearWork() {
-  const keep = { meta: S.meta, page: S.page, mode: S.E.mode, secs: S.secs };
-  S = blank(); S.meta = keep.meta; S.page = keep.page; S.E.mode = keep.mode; S.secs = keep.secs;
-  Painter.wipe(); bindAll(); applyColorMode(); refresh(); save();
+  const keep = { meta: S.meta, page: S.page, mode: S.E.mode, secs: S.secs, kind: S.kind };
+  S = blank(); S.meta = keep.meta; S.page = keep.page; S.E.mode = keep.mode; S.secs = keep.secs; S.kind = keep.kind;
+  Painter.wipe(); applyKind(); bindAll(); applyColorMode(); refresh(); save();
   $('#sheetwrap').scrollTo({ top: 0 }); toast('Cleared. Your page is still here — start fresh.');
 }
 function updateTitle() {
   const m = S.meta;
-  $('#docTitle').innerHTML = `<b>${esc(m.book || 'Chapter Study')}</b>${m.chapter ? ' · ' + esc(m.chapter) : ''}${m.name ? ' — ' + esc(m.name) : ''}`;
-  document.title = (m.chapter ? m.chapter + ' · ' : '') + "Chapter Study — panel'd";
+  const T = SHEET_TITLE[kind()] || 'Chapter Study';
+  $('#docTitle').innerHTML = `<b>${esc(m.book || T)}</b>${m.chapter ? ' · ' + esc(m.chapter) : ''}${m.name ? ' — ' + esc(m.name) : ''}`;
+  document.title = (m.chapter ? m.chapter + ' · ' : '') + T + " — panel'd";
 }
 function todayStr() { return new Date().toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' }); }
 
@@ -796,6 +1024,8 @@ async function showSetup() {
   const qp = new URLSearchParams(location.search);
   $('#sName').value = S.meta.name || lsGet('name', '');
   $('#sClass').value = S.meta.klass || lsGet('klass', '');
+  $('#dlNovels').innerHTML = LIB.books.filter(b => b.kind === 'novel').map(b => `<option value="${esc(b.title)}">`).join('');
+  setSetupKind(new URLSearchParams(location.search).get('type') || lsGet('kind', 'comic'));
   const qb = qp.get('book');
   if (qb) { const opt = [...$('#sBook').options].find(o => o.value === 'lib:' + qb || o.value === 'preset:' + qb); if (opt) $('#sBook').value = opt.value; }
   if (qp.get('chapter')) $('#sChapter').value = qp.get('chapter');
@@ -813,8 +1043,12 @@ async function showSetup() {
 function wireSetup() {
   $('#sBook').addEventListener('change', e => { $('#fOther').hidden = $('#fArt').hidden = e.target.value !== 'other'; fillChapterList(e.target.value); });
   $('#dSetup').addEventListener('cancel', e => { if (!S.meta.name) e.preventDefault(); });
+  $$('#kinds .kind').forEach(b => b.onclick = () => setSetupKind(b.dataset.kind));
+  $('#sCourse').onchange = fillUnits;
   $('#fSetup').addEventListener('submit', e => {
     e.preventDefault();
+    const K = setupKind;
+    if (K !== 'comic') { startGeneric(K); return; }
     const req = [['#sName', v => v.trim()], ['#sBook', v => v], ['#sChapter', v => v.trim()]];
     if ($('#sBook').value === 'other') req.push(['#sBookOther', v => v.trim()]);
     let ok = true;
@@ -831,20 +1065,64 @@ function wireSetup() {
     const lbk = key.startsWith('lib:') ? LIB.books.find(b => 'lib:' + b.id === key) : null;
     const inColor = key === 'other' ? $('#sArt').value === 'color' : lbk ? lbk.color : !!(PRESETS[fresh.meta.preset] || {}).color;
     fresh.E.mode = inColor ? 'analysis' : 'study';
-    S = fresh; Painter.reset(); bindAll(); applyPreset(); closeD($('#dSetup'));
+    lsSet('kind', 'comic');
+    S = fresh; Painter.reset(); applyKind(); bindAll(); applyPreset(); closeD($('#dSetup'));
     openPicker(); refresh(); save();
   });
   $$('#fSetup input,#fSetup select').forEach(el => el.addEventListener('input', () => el.closest('.f')?.classList.remove('bad')));
 }
 
+let setupKind = 'comic';
+function setSetupKind(k) {
+  if (!MODES[k]) k = 'comic'; setupKind = k;
+  $$('#kinds .kind').forEach(b => b.setAttribute('aria-checked', b.dataset.kind === k));
+  $$('#fSetup [data-kinds]').forEach(f => f.hidden = !f.dataset.kinds.split(' ').includes(k));
+  $('#fOther').hidden = $('#fArt').hidden = !(k === 'comic' && $('#sBook').value === 'other');
+  $('#lTitle').textContent = k === 'cartoon' ? 'Cartoon title (optional)' : k === 'annot' ? 'Book or text title' : 'Book title';
+  $('#lChapter').innerHTML = k === 'annot' ? 'Chapter / pages <span style="text-transform:none;letter-spacing:0">(optional)</span>' : 'Chapter';
+  $('#sChapter').setAttribute('list', k === 'comic' ? 'dlChapters' : '');
+  if (k === 'cartoon') fillUnits();
+  $$('#fSetup .f').forEach(f => f.classList.remove('bad'));
+}
+function fillUnits() { $('#dlUnitsSetup').innerHTML = (COURSES[$('#sCourse').value] || COURSES.other).units.map(u => `<option value="${esc(u)}">`).join(''); }
+function startGeneric(K) {
+  const req = [['#sName', v => v.trim()]];
+  if (K === 'novelch' || K === 'annot') req.push(['#sTitle', v => v.trim()]);
+  if (K === 'novelch') req.push(['#sChapter', v => v.trim()]);
+  if (K === 'cartoon') req.push(['#sUnit', v => v.trim()]);
+  let ok = true;
+  req.forEach(([id, t]) => { const bad = !t($(id).value); $(id).closest('.f').classList.toggle('bad', bad); if (bad && ok) { $(id).focus(); ok = false; } });
+  if (!ok) return;
+  const fresh = blank(); fresh.kind = K;
+  const course = $('#sCourse').value;
+  fresh.meta = Object.assign(fresh.meta, {
+    name: $('#sName').value.trim(), klass: $('#sClass').value.trim(), date: todayStr(), bookKey: K, preset: 'generic',
+    book: K === 'cartoon' ? COURSES[course].label.replace(/ \(Grade \d+\)/, '') : $('#sTitle').value.trim(),
+    chapter: K === 'cartoon' ? $('#sUnit').value.trim() : $('#sChapter').value.trim(),
+    course: K === 'cartoon' ? course : '', title: K === 'cartoon' ? $('#sTitle').value.trim() : ''
+  });
+  lsSet('name', fresh.meta.name); lsSet('klass', fresh.meta.klass); lsSet('kind', K);
+  S = fresh; Painter.reset(); applyPreset(); applyKind(); bindAll(); closeD($('#dSetup'));
+  if (MODE().page) openPicker(); else { $('#stage').classList.add('picking'); showView('write'); }
+  refresh(); save();
+}
+
 /* ============ picker ============ */
+const libKind = () => ({ comic: 'comic', annot: 'novel', cartoon: 'cartoon' })[kind()];
+function pickerBooks() { return kind() === 'comic' ? [libBook()].filter(Boolean) : LIB.books.filter(b => b.kind === libKind()); }
+function curPickBook() { const bs = pickerBooks(); return kind() === 'comic' ? bs[0] : bs.find(b => b.id === $('#libBook').value) || bs[0]; }
 const uploads = []; // {url, name, label}
 function openPicker() {
   const stage = $('#stage'); stage.classList.add('picking');
-  const lb = libBook(); const hasLib = lb && lb.chapters.some(c => c.pages.length);
-  $('#tLib').hidden = !hasLib;
+  const books = pickerBooks().filter(b => b.chapters.some(c => c.pages.length)); const hasLib = books.length > 0;
+  $('#tLib').hidden = !hasLib; $('#tTxt').hidden = kind() !== 'annot';
+  $('#libBookWrap').hidden = kind() === 'comic' || books.length < 2;
+  $('#libBook').innerHTML = books.map(b => `<option value="${esc(b.id)}">${esc(b.title)}</option>`).join('');
+  const match = books.find(b => b.title.toLowerCase() === (S.meta.book || '').toLowerCase()); if (match) $('#libBook').value = match.id;
+  $('.pk h2').textContent = kind() === 'cartoon' ? 'Choose your cartoon' : kind() === 'annot' ? 'Choose your page or passage' : 'Choose your page';
   setPickTab(hasLib ? 'lib' : 'up');
   if (hasLib) {
+    const lb = curPickBook();
     const sel = $('#libChapter');
     sel.innerHTML = lb.chapters.map((c, i) => `<option value="${i}">${esc(c.title)} (${c.pages.length})</option>`).join('');
     const want = lb.chapters.findIndex(c => c.title.toLowerCase() === S.meta.chapter.toLowerCase());
@@ -854,14 +1132,14 @@ function openPicker() {
 }
 function closePicker() { if (!Painter.has()) return; $('#stage').classList.remove('picking'); updatePageTitle(); }
 function setPickTab(t) {
-  $('#tLib').setAttribute('aria-selected', t === 'lib'); $('#tUp').setAttribute('aria-selected', t === 'up');
-  $('#pLib').hidden = t !== 'lib'; $('#pUp').hidden = t !== 'up';
+  $('#tLib').setAttribute('aria-selected', t === 'lib'); $('#tUp').setAttribute('aria-selected', t === 'up'); $('#tTxt').setAttribute('aria-selected', t === 'txt');
+  $('#pLib').hidden = t !== 'lib'; $('#pUp').hidden = t !== 'up'; $('#pTxt').hidden = t !== 'txt';
 }
 function renderLib() {
-  const lb = libBook(); if (!lb) return;
+  const lb = curPickBook(); if (!lb) return;
   const ch = lb.chapters[+$('#libChapter').value] || { pages: [] };
   $('#libCount').textContent = ch.pages.length + ' pages';
-  $('#libThumbs').innerHTML = ch.pages.map((p, i) => `<button class="thumb" data-i="${i}" aria-current="${S.page && S.page.src === p.src}" aria-label="Page ${esc(p.label)}"><img loading="lazy" src="${esc(p.src)}" alt=""><b>p.${esc(p.label)}</b></button>`).join('')
+  $('#libThumbs').innerHTML = ch.pages.map((p, i) => `<button class="thumb" data-i="${i}" aria-current="${S.page && S.page.src === p.src}" aria-label="Page ${esc(p.label)}"><img loading="lazy" src="${esc(p.src)}" alt=""><b>${/^\d+$/.test(p.label) ? 'p.' : ''}${esc(p.label)}</b></button>`).join('')
     || '<div class="empty">No pages listed for this chapter yet.</div>';
   $$('#libThumbs .thumb').forEach(b => b.onclick = () => { const p = ch.pages[+b.dataset.i]; choosePage({ src: p.src, label: p.label, from: 'library' }); });
 }
@@ -882,17 +1160,19 @@ function addFiles(files) {
   if (uploads.length === 1 && files.length === 1 && !Painter.has()) $('#upThumbs .thumb')?.click();
 }
 async function choosePage(p) {
-  if (Painter.has() && Painter.dirty() && S.page?.src !== p.src) {
-    if (!await confirmBox('Switch pages?', 'Your coloring on the current page will be cleared. Your writing stays.', 'Switch')) return;
+  if (Painter.has() && (Painter.dirty() || S.notes.length) && S.page?.src !== p.src) {
+    if (!await confirmBox('Switch pages?', 'The color, marks, and sticky notes on the current page will be cleared. Your writing stays.', 'Switch')) return;
   }
   try {
     await Painter.load(p.src);
   } catch (e) { toast('That page couldn’t be opened. Try another image.', 4000); return; }
+  const prevSrc = S.page?.src;
   S.page = { src: p.src, label: p.label || '', from: p.from, name: p.name || '' };
   if (p.from === 'upload') S.page.src = Painter.baseDataURL();
+  if (prevSrc !== p.src) { S.notes = []; Notes.render(); Notes.renderList(); }
   $('#pageNo').value = S.page.label; syncPagePlaceholders();
   $('#stage').classList.remove('picking'); updatePageTitle(); S.used = {}; renderUsed(); refresh(); save();
-  toast('Page ready — pick a color and start coloring.');
+  toast(kind() === 'annot' ? 'Page ready — highlight, underline, stamp symbols, and add sticky notes.' : kind() === 'cartoon' ? 'Cartoon ready — circle details and number them with sticky notes.' : 'Page ready — pick a color and start coloring.');
 }
 function updatePageTitle() { $('#pageTitle').textContent = S.page ? `Page ${S.page.label || ''}${S.meta.chapter ? ' · ' + S.meta.chapter : ''}` : 'Page'; }
 function syncPagePlaceholders() { $$('[data-pagefill]').forEach(i => i.placeholder = S.page?.label || '#'); }
@@ -904,21 +1184,25 @@ function bindAll() {
     const v = getK(el.dataset.k) ?? ''; el.value = v; autosize(el);
   });
   $('#pageNo').value = S.page?.label || ''; syncPagePlaceholders(); updateElement(); renderUsed(); updateTitle(); updatePageTitle();
+  if (typeof updateGenericSelects === 'function') { updateGenericSelects(); Notes.render(); Notes.renderList(); }
 }
-function wireSheet() {
-  $$('[data-k]').forEach(el => {
+function wireField(el) {
     const ev = el.tagName === 'SELECT' ? 'change' : 'input';
     el.addEventListener(ev, () => {
+      if (el.dataset.k.startsWith('f.') && !S.f) S.f = {};
       setK(el.dataset.k, el.value); autosize(el);
-      if (el.dataset.k.startsWith('meta.')) updateTitle();
+      if (el.dataset.k.startsWith('meta.')) { updateTitle(); $$(`[data-k="${el.dataset.k}"]`).forEach(o => { if (o !== el) o.value = el.value; }); }
       if (el.dataset.k === 'C.element') updateElement();
+      if (el.tagName === 'SELECT' && el.dataset.k.startsWith('f.')) updateGenericSelects();
       refresh(); saveSoon(); touch();
     });
     if (el.tagName === 'INPUT' && el.closest('.color-sentence')) {
       const fit = () => el.style.width = Math.max(90, Math.min(260, (el.value.length || el.placeholder.length) * 8.6 + 16)) + 'px';
       el.addEventListener('input', fit); fit(); el._fit = fit;
     }
-  });
+}
+function wireSheet() {
+  $$('#sheet [data-k]').forEach(wireField);
   $('#pageNo').addEventListener('input', e => { if (S.page) { S.page.label = e.target.value.trim(); syncPagePlaceholders(); updatePageTitle(); saveSoon(); } });
   // stems
   $$('[data-stems]').forEach(b => b.addEventListener('click', () => {
@@ -973,15 +1257,18 @@ const CHECK = [
   ['E', 'Theme', 'var(--ink-g)', () => S.D.theme.trim() && words(S.D.analysis) >= 15, 'D'],
   ['F', 'Color', 'var(--ink-l)', () => S.E.colors.trim() && S.E.to1.trim() && words(S.E.because) >= 4 && (S.E.mode !== 'analysis' || S.E.meaning.trim()), 'E']
 ];
-function totalWords() { return [S.A.summary, S.B.quote, S.B.explain, S.C.quote, S.C.effect, S.P.study, S.D.theme, S.D.analysis, S.E.meaning, S.E.because].reduce((n, s) => n + words(s), 0); }
+function totalWords() { if (kind() !== 'comic') return genWords(); return [S.A.summary, S.B.quote, S.B.explain, S.C.quote, S.C.effect, S.P.study, S.D.theme, S.D.analysis, S.E.meaning, S.E.because].reduce((n, s) => n + words(s), 0); }
 const fmtTime = s => s < 60 ? '<1 min' : Math.round(s / 60) + ' min';
 function refresh() {
   const key = $('#key');
-  key.innerHTML = CHECK.map(([l, n, c, f, id]) => `<button class="k ${f() ? 'ok' : ''}" data-go="${id}" title="${n}"><span class="badge ${l.length > 1 ? 'wide' : ''}" style="background:${c}">${l}</span>${n}</button>`).join('')
-    + `<button class="k ${Painter.dirty() ? 'ok' : ''}" data-go="page"><span class="badge" style="background:conic-gradient(#FF9EC7,#FFE45C,#9BE8A8,#8FD0F5,#FF9EC7)">✎</span>${S.E.mode === 'analysis' ? 'Marked' : 'Colored'}</button>`
+  const CK = genChecks(); const pg = kind() === 'comic' || MODE().page;
+  const pgLabel = kind() === 'annot' ? 'Annotated' : kind() === 'cartoon' ? 'Marked' : S.E.mode === 'analysis' ? 'Marked' : 'Colored';
+  const pgOk = Painter.dirty() || (S.notes || []).length > 0;
+  key.innerHTML = CK.map(([l, n, c, f, id]) => `<button class="k ${f() ? 'ok' : ''}" data-go="${id}" title="${n}"><span class="badge ${l.length > 1 ? 'wide' : ''}" style="background:${c}">${l}</span>${n}</button>`).join('')
+    + (pg ? `<button class="k ${pgOk ? 'ok' : ''}" data-go="page"><span class="badge" style="background:conic-gradient(#FF9EC7,#FFE45C,#9BE8A8,#8FD0F5,#FF9EC7)">✎</span>${pgLabel}</button>` : '')
     + `<span class="sep"></span><span class="stat">${totalWords()} words</span><span class="stat">${fmtTime(S.secs)}</span><span class="saved" id="savedAt">${savedLabel}</span>`;
   $$('#key .k').forEach(b => b.onclick = () => goTo(b.dataset.go));
-  CHECK.forEach(([l, , , f, id]) => { const d = $(`[data-done="${id}"]`); const ok = !!f(); d.classList.toggle('ok', ok); d.textContent = ok ? 'done' : ''; });
+  CK.forEach(([l, , , f, id]) => { const d = $(`[data-done="${id}"]`); if (!d) return; const ok = !!f(); d.classList.toggle('ok', ok); d.textContent = ok ? 'done' : ''; });
 }
 function goTo(id) {
   if (id === 'page') { showView('page'); return; }
@@ -989,7 +1276,13 @@ function goTo(id) {
   w.scrollTo({ top: s.getBoundingClientRect().top - w.getBoundingClientRect().top + w.scrollTop - 10, behavior: 'smooth' });
   setTimeout(() => $('textarea,input,select', s)?.focus({ preventScroll: true }), 350);
 }
-function missing() { const m = CHECK.filter(c => !c[3]()).map(c => c[1]); if (!Painter.dirty()) m.push(S.E.mode === 'analysis' ? 'circling a zone on your page' : 'coloring your page'); return m; }
+function missing() {
+  const m = genChecks().filter(c => !c[3]()).map(c => c[1]);
+  if (kind() === 'comic' && !Painter.dirty()) m.push(S.E.mode === 'analysis' ? 'circling a zone on your page' : 'coloring your page');
+  if (kind() === 'annot' && !Painter.dirty()) m.push('marking up the page (highlight, underline, symbols)');
+  if (kind() === 'cartoon' && !Painter.dirty()) m.push('circling details on the cartoon');
+  return m;
+}
 
 /* ============ time ============ */
 let lastAct = Date.now();
@@ -1015,18 +1308,20 @@ const saveSoon = debounce(save, 1200);
 async function restore(d) {
   S = Object.assign(blank(), d.state);
   ['meta', 'A', 'B', 'C', 'P', 'D', 'E'].forEach(k => S[k] = Object.assign(blank()[k], d.state[k] || {}));
-  Painter.reset(); applyPreset(); bindAll();
-  if (S.page) {
+  S.f = d.state.f || {}; S.notes = d.state.notes || []; S.kind = d.state.kind || 'comic';
+  Painter.reset(); applyPreset(); applyKind(); bindAll();
+  if (!MODE().page && kind() !== 'comic') { $('#stage').classList.add('picking'); }
+  else if (S.page) {
     try { await Painter.load(S.page.src); if (d.paint) await Painter.loadPaint(d.paint); $('#stage').classList.remove('picking'); }
     catch (e) { toast('Couldn’t reload your page image — choose it again (your writing is safe).', 5000); openPicker(); }
   } else openPicker();
-  bindAll(); applyColorMode(); refresh();
+  bindAll(); applyColorMode(); applyKind(); refresh();
 }
 async function saveFile() {
   const page = Painter.has() ? Painter.baseDataURL() : null;
   const paint = Painter.has() ? Painter.paintDataURL() : null;
   const out = { paneld: 1, savedAt: new Date().toISOString(), state: { ...S, page: S.page ? { ...S.page, src: page } : null }, paint };
-  const name = `Chapter Study - ${fileSafe(S.meta.name) || 'student'} - ${fileSafe(S.meta.chapter) || 'chapter'}.paneld`;
+  const name = `${SHEET_TITLE[kind()]} - ${fileSafe(S.meta.name) || 'student'} - ${fileSafe(S.meta.chapter || S.meta.book) || 'work'}.paneld`;
   download(new Blob([JSON.stringify(out)], { type: 'application/json' }), name);
   toast('Progress file downloaded. Open it later with Save → Open progress file.', 4200);
 }
@@ -1044,6 +1339,16 @@ function showView(v) {
   $('#main').dataset.view = v;
   $$('.mtabs button').forEach(b => b.setAttribute('aria-selected', b.dataset.view === v));
   if (v === 'page') requestAnimationFrame(() => Painter.fitIfNeeded());
+}
+function renderHelp() {
+  if (kind() === 'comic') { $('#helpIntro').innerHTML = '<b>1.</b> Choose a page from the class library, or upload your own page image. <b>2.</b> Color the page. <b>3.</b> Fill in sections A–F. <b>4.</b> Export a PDF and turn it in.'; if (window._comicHelp) $('#helpgrid').innerHTML = window._comicHelp; return; }
+  window._comicHelp = window._comicHelp || $('#helpgrid').innerHTML;
+  const m = MODE();
+  $('#helpIntro').innerHTML = kind() === 'novelch' ? '<b>1.</b> Fill in each section as you read. <b>2.</b> Cite page numbers. <b>3.</b> Export a PDF and turn it in.'
+    : kind() === 'annot' ? '<b>1.</b> Choose a page (library, photo, or paste the text). <b>2.</b> Mark it up: highlight, underline, circle, stamp symbols, and add sticky notes in the margins. <b>3.</b> Fill in sections A–E. <b>4.</b> Export a PDF.'
+    : '<b>1.</b> Choose or upload the cartoon. <b>2.</b> Circle, box, or arrow the details and number them with sticky notes. <b>3.</b> Fill in sections A–F. <b>4.</b> Export a PDF.';
+  $('#helpgrid').innerHTML = m.sections.map(s => `<span class="badge" style="background:${INKS[s.ink]}">${s.id}</span><div><b>${esc(s.title)}</b> — ${esc(s.hint || s.prompt || '')}</div>`).join('')
+    + (kind() === 'annot' ? `<span class="badge" style="background:#eee">★</span><div><b>Symbol key</b> — ${STAMPS.map(x => `${x[0]} ${esc(x[1])}`).join(' · ')}</div>` : '');
 }
 function openDone() {
   const m = missing();
@@ -1066,7 +1371,7 @@ const ACTIONS = {
   preview: () => Exporter.preview(), copy: () => Exporter.copy(), png: () => Exporter.png(),
   newSheet: async () => {
     if (S.meta.name && !await confirmBox('Start a new chapter study?', 'This clears the current sheet on this device. Save a progress file first if you want to keep it.', 'Start new')) return;
-    await IDB.del('draft'); S = blank(); Painter.reset(); bindAll(); refresh(); $('#stage').classList.add('picking'); showSetup();
+    await IDB.del('draft'); S = blank(); Painter.reset(); applyKind(); bindAll(); refresh(); $('#stage').classList.add('picking'); showSetup();
   }
 };
 function wireChrome() {
@@ -1080,7 +1385,7 @@ function wireChrome() {
   });
   $('#bReset').onclick = () => openD('#dReset');
   $('#bClearWork').onclick = () => { closeD($('#dReset')); clearWork(); };
-  $('#bNewStudy').onclick = async () => { closeD($('#dReset')); await IDB.del('draft'); S = blank(); Painter.reset(); bindAll(); refresh(); $('#stage').classList.add('picking'); showSetup(); };
+  $('#bNewStudy').onclick = async () => { closeD($('#dReset')); await IDB.del('draft'); S = blank(); Painter.reset(); applyKind(); bindAll(); refresh(); $('#stage').classList.add('picking'); showSetup(); };
   $$('#segColor button').forEach(b => b.onclick = async () => {
     const m = b.dataset.v; if (m === S.E.mode) return;
     if (Painter.dirty() && !await confirmBox(m === 'analysis' ? 'Switch to Color Analysis?' : 'Switch to Color Study?', 'This clears the color or marks on your page. Your writing stays.', 'Switch')) return;
@@ -1094,6 +1399,13 @@ function wireChrome() {
   $$('.mtabs button').forEach(b => b.onclick = () => showView(b.dataset.view));
   $('#tLib').onclick = () => setPickTab('lib'); $('#tUp').onclick = () => setPickTab('up');
   $('#libChapter').onchange = renderLib;
+  $('#libBook').onchange = () => { const lb = curPickBook(); $('#libChapter').innerHTML = lb.chapters.map((c, i) => `<option value="${i}">${esc(c.title)} (${c.pages.length})</option>`).join(''); renderLib(); };
+  $('#tTxt').onclick = () => setPickTab('txt');
+  $('#bMakePage').onclick = () => {
+    const t = $('#txtIn').value.trim(); if (words(t) < 5) { toast('Paste at least a few sentences first.'); return; }
+    const pg = $('#txtPage').value.trim(); choosePage({ src: renderTextPage(t, pg, S.meta.book), label: pg, from: 'text' });
+  };
+  $('#bHelp').addEventListener('click', renderHelp);
   $('#fFiles').onchange = e => { addFiles(e.target.files); e.target.value = ''; };
   $('#fCam').onchange = e => { addFiles(e.target.files); e.target.value = ''; };
   $('#fOpen').onchange = e => { if (e.target.files[0]) openFile(e.target.files[0]); e.target.value = ''; };
@@ -1117,8 +1429,8 @@ function wireKeys() {
     if (mod && e.key.toLowerCase() === 'y') { e.preventDefault(); Painter.redo(); return; }
     if (mod) return;
     const k = e.key;
-    const map = S.E.mode === 'analysis' ? { b: 'brush', c: 'circle', r: 'box', i: 'picker', e: 'eraser', h: 'hand' } : { b: 'brush', m: 'marker', f: 'fill', e: 'eraser', h: 'hand' };
-    if (map[k.toLowerCase()]) { Painter.setTool(map[k.toLowerCase()]); return; }
+    const map = { b: 'brush', m: 'marker', f: 'fill', c: 'circle', r: 'box', i: 'picker', l: 'line', a: 'arrow', n: 'note', s: 'stamp', e: 'eraser', h: 'hand' };
+    if (map[k.toLowerCase()] && Painter.allowed(map[k.toLowerCase()])) { Painter.setTool(map[k.toLowerCase()]); return; }
     if (k === '[' || k === ']') { const s = $('#size'); s.value = +s.value + (k === ']' ? 3 : -3); s.dispatchEvent(new Event('input')); return; }
     if (k === '+' || k === '=') { Painter.zoomBy(1.25); return; }
     if (k === '-' || k === '_') { Painter.zoomBy(0.8); return; }
@@ -1134,10 +1446,146 @@ function wireKeys() {
 window.addEventListener('scroll', () => { if (window.scrollY || window.scrollX) window.scrollTo(0, 0); });
 async function boot() {
   applyLook(); Painter.init(); wireChrome(); wireSheet(); wireSetup(); wireKeys();
-  await loadLibrary(); applyPreset(); bindAll(); refresh();
+  await loadLibrary(); applyPreset(); applyKind(); bindAll(); refresh();
   showSetup();
 }
 document.addEventListener('DOMContentLoaded', boot);
+
+/* ============ study types: generic sheet, sticky notes, text pages ============ */
+const kind = () => S.kind || 'comic';
+const MODE = () => MODES[kind()];
+const SHEET_TITLE = { comic: 'Chapter Study', novelch: 'Chapter Study', annot: 'Annotation', cartoon: 'Cartoon Analysis' };
+const fv = k => (S.f && S.f[k]) || '';
+
+function fieldHTML(f, sec) {
+  const lab = f.label ? `<span class="lab cap">${esc(f.label)}</span>` : '';
+  switch (f.t) {
+    case 'ta': return `${lab}<textarea class="w" data-k="f.${f.k}" rows="${f.rows || 3}" placeholder="${esc(f.ph || '')}"></textarea>`;
+    case 'in': return `${lab}<input class="w" data-k="f.${f.k}" placeholder="${esc(f.ph || '')}"${f.list ? ` list="dl_${f.list}"` : ''}>${f.list ? `<datalist id="dl_${f.list}">${(f.list === 'NOVEL_THEMES' ? NOVEL_THEMES : []).map(t => `<option value="${esc(t)}">`).join('')}</datalist>` : ''}`;
+    case 'quote': return `${lab}<div class="quote"><textarea class="w" data-k="f.${f.k}" rows="2" placeholder="${esc(f.ph || '')}"></textarea></div>`;
+    case 'cite': return `<div class="cite">(Page <input data-k="f.${f.page}" data-pagefill inputmode="numeric">${f.line ? `, ${esc(f.lineLabel || 'Line')} <input data-k="f.${f.line}" inputmode="numeric">` : ''})</div>`;
+    case 'sel': {
+      const o = optsOf(f.opts);
+      return `${lab}<select class="w" data-k="f.${f.k}" data-defs="${f.opts === 'NOVEL_ELEMENTS' ? 1 : ''}"><option value="">Choose…</option>${o.map(x => `<option>${esc(x)}</option>`).join('')}</select>`
+        + (f.other ? `<div data-otherfor="${f.k}" hidden><span class="lab cap">Name it</span><input class="w" data-k="f.${f.other}" placeholder="e.g. motif"></div>` : '')
+        + (f.opts === 'NOVEL_ELEMENTS' ? `<p class="prompt" data-def="${f.k}" hidden></p>` : '');
+    }
+    case 'checks': return `${lab}<div class="checks" data-checks="${f.k}">${f.opts.map(o => `<label class="ck"><input type="checkbox" value="${esc(o)}"><span>${esc(o)}</span></label>`).join('')}</div>`;
+    case 'row': return `<div class="rowin" style="grid-template-columns:repeat(${f.items.length},1fr)">${f.items.map(i => `<div><span class="lab cap">${esc(i.label)}</span><input class="w" data-k="f.${i.k}" placeholder="${esc(i.ph || '')}"></div>`).join('')}</div>`;
+    case 'notes': return `<span class="lab cap">Sticky notes on the page</span><div class="noteslist" data-notes></div>`;
+    case 'key': return `<span class="lab cap">Annotation key — tap a symbol to stamp it</span><div class="skey">${STAMPS.map(([s, n, d], i) => `<button type="button" class="skey-i" data-stamp="${i}" title="${esc(d)}"><b>${s}</b><span>${esc(n)}</span></button>`).join('')}</div>`;
+    case 'prompt': return `<p class="prompt">${esc(f.text)}</p>`;
+  }
+  return '';
+}
+function renderGeneric() {
+  const g = $('#gsheet'); if (kind() === 'comic') { g.innerHTML = ''; return; }
+  const m = MODE(); const [l1, l2, l3, l4] = m.meta;
+  g.innerHTML = `<div class="shead"><h1>${SHEET_TITLE[kind()]}</h1><span class="cap">${esc(m.label)}</span></div>
+  <div class="meta"><label>${l1}<input data-k="meta.name"></label><label>${l2}<input data-k="meta.book"></label><label>${l3}<input data-k="meta.chapter"${kind() === 'cartoon' ? ' list="dlUnits"' : ''}></label><label>${l4}<input data-k="meta.date"></label></div>
+  ${kind() === 'cartoon' ? `<datalist id="dlUnits">${(COURSES[S.meta.course] || COURSES.other).units.map(u => `<option value="${esc(u)}">`).join('')}</datalist>` : ''}
+  ${m.sections.map(s => `<section class="sec" id="sg${s.id}" data-sec="g${s.id}"><h2><span class="badge" style="background:${INKS[s.ink]}">${s.id}</span>${esc(s.title)}<span class="done" data-done="g${s.id}"></span></h2>
+    ${s.hint ? `<p class="hint">${esc(s.hint)}</p>` : ''}${s.box ? '<div class="theme-box">' : ''}${s.prompt ? `<p class="prompt">${esc(s.prompt)}</p>` : ''}
+    ${s.fields.map(f => fieldHTML(f, s)).join('')}
+    ${s.stems ? `<div class="helpers"><button class="lnk" type="button" data-gstems="${s.id}">Sentence starters</button></div><div class="stems" data-for="g${s.id}" hidden></div>` : ''}${s.box ? '</div>' : ''}</section>`).join('')}`;
+  $$('[data-k]', g).forEach(wireField);
+  $$('[data-checks]', g).forEach(box => {
+    const k = box.dataset.checks; const cur = fv(k).split(',').map(s => s.trim());
+    $$('input', box).forEach(c => { c.checked = cur.includes(c.value); c.onchange = () => { S.f[k] = $$('input:checked', box).map(x => x.value).join(', '); refresh(); saveSoon(); touch(); }; });
+  });
+  $$('[data-gstems]', g).forEach(b => b.onclick = () => {
+    const sec = m.sections.find(s => s.id === b.dataset.gstems); const box = $(`.stems[data-for="g${sec.id}"]`, g);
+    if (box.hidden) {
+      box.innerHTML = sec.stems.map(s => `<button class="chip" type="button">${esc(s)}</button>`).join('');
+      $$('.chip', box).forEach(c => { c.onmousedown = e => e.preventDefault(); c.onclick = () => {
+        const se = b.closest('.sec'); const t = (se.contains(lastFocus) && lastFocus.matches('textarea.w,input.w')) ? lastFocus : $$('textarea.w', se).pop() || $$('input.w', se).pop(); insertAt(t, c.textContent);
+      }; });
+    }
+    box.hidden = !box.hidden;
+  });
+  $$('[data-stamp]', g).forEach(b => b.onclick = () => { Painter.setStamp(+b.dataset.stamp); showView('page'); toast(`Tap the page to stamp ${STAMPS[+b.dataset.stamp][0]} ${STAMPS[+b.dataset.stamp][1]}.`); });
+  bindAll(); updateGenericSelects(); Notes.renderList();
+}
+function updateGenericSelects() {
+  $$('#gsheet select[data-k]').forEach(s => {
+    const k = s.dataset.k.slice(2); const o = $(`[data-otherfor="${k}"]`); if (o) o.hidden = s.value !== 'Other…';
+    const d = $(`[data-def="${k}"]`); if (d) { const def = (NOVEL_ELEMENTS.find(e => e[0] === s.value) || [])[1]; d.hidden = !def; d.textContent = def || ''; }
+  });
+}
+function genChecks() {
+  if (kind() === 'comic') return CHECK;
+  return MODE().sections.map(s => [s.id, s.title, INKS[s.ink], () => s.req.every(([k, n]) => k === 'notes' ? S.notes.filter(x => x.text.trim()).length >= n : words(fv(k)) >= n), 'g' + s.id]);
+}
+function genWords() { return Object.values(S.f || {}).reduce((n, v) => n + words(v), 0) + (S.notes || []).reduce((n, x) => n + words(x.text), 0); }
+
+/* ---------- sticky notes ---------- */
+const Notes = (() => {
+  let drag = null;
+  const tint = c => `color-mix(in srgb, ${c} 45%, #ffffff)`;
+  function render() {
+    const L = $('#notes'); if (!L) return;
+    L.innerHTML = (S.notes || []).map((n, i) => `<div class="note ${n.open ? 'open' : ''} ${n.x > 0.62 ? 'left' : ''}" data-i="${i}" style="left:${n.x * 100}%;top:${n.y * 100}%">
+      <button class="pin" type="button" style="background:${n.c}" aria-label="Note ${i + 1}">${i + 1}</button>
+      <div class="card" style="background:${tint(n.c)}"><textarea placeholder="Type your note…" aria-label="Note ${i + 1}">${esc(n.text)}</textarea><button class="del" type="button" title="Delete note" aria-label="Delete note">×</button></div></div>`).join('');
+    $$('.note', L).forEach(el => {
+      const i = +el.dataset.i, n = S.notes[i];
+      const ta = $('textarea', el);
+      ta.oninput = () => { n.text = ta.value; renderList(); refresh(); saveSoon(); touch(); };
+      ta.onpointerdown = e => e.stopPropagation();
+      $('.del', el).onclick = e => { e.stopPropagation(); S.notes.splice(i, 1); render(); refresh(); saveSoon(); };
+      $('.del', el).onpointerdown = e => e.stopPropagation();
+      const pin = $('.pin', el);
+      pin.onpointerdown = e => { e.stopPropagation(); e.preventDefault(); pin.setPointerCapture(e.pointerId); drag = { i, x: e.clientX, y: e.clientY, moved: false }; };
+      pin.onpointermove = e => {
+        if (!drag || drag.i !== i) return; if (Math.hypot(e.clientX - drag.x, e.clientY - drag.y) > 4) drag.moved = true; if (!drag.moved) return;
+        const r = $('#cw').getBoundingClientRect(); n.x = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)); n.y = Math.min(1, Math.max(0, (e.clientY - r.top) / r.height));
+        el.style.left = n.x * 100 + '%'; el.style.top = n.y * 100 + '%';
+      };
+      pin.onpointerup = () => { if (!drag) return; const m = drag.moved; drag = null; if (m) { render(); saveSoon(); } else { n.open = !n.open; el.classList.toggle('open', n.open); if (n.open) ta.focus(); saveSoon(); } };
+    });
+  }
+  function renderList() {
+    $$('[data-notes]').forEach(box => {
+      const ns = S.notes || [];
+      box.innerHTML = ns.length ? `<ol>${ns.map((n, i) => `<li data-i="${i}"><span class="pinmini" style="background:${n.c}">${i + 1}</span>${n.text.trim() ? esc(n.text) : '<em>(empty — tap to write)</em>'}</li>`).join('')}</ol>`
+        : '<p class="empty-notes">No sticky notes yet. Choose the note tool <kbd>N</kbd> and tap the page where you want one.</p>';
+      $$('li', box).forEach(li => li.onclick = () => { const n = S.notes[+li.dataset.i]; S.notes.forEach(x => x.open = false); n.open = true; render(); showView('page'); setTimeout(() => $(`.note[data-i="${li.dataset.i}"] textarea`)?.focus(), 80); });
+    });
+  }
+  function add(x, y, c) {
+    S.notes.forEach(n => n.open = false);
+    S.notes.push({ x, y, text: '', c: c || '#FFE45C', open: true }); render(); renderList();
+    $(`.note[data-i="${S.notes.length - 1}"] textarea`)?.focus({ preventScroll: true }); refresh(); saveSoon();
+  }
+  return { render, renderList, add };
+})();
+
+/* ---------- typed / pasted passage → a page with wide margins ---------- */
+function renderTextPage(text, pageNo, title) {
+  const W = 1240, L = 130, R = 380, TOP = 170, LH = 58, FS = 31;
+  const c = document.createElement('canvas'); const x = c.getContext('2d');
+  x.font = `${FS}px Georgia, "Source Serif 4", serif`;
+  const lines = [];
+  String(text).replace(/\r/g, '').split('\n').forEach((para, pi, arr) => {
+    const ws = para.split(/\s+/).filter(Boolean); let line = '';
+    if (!ws.length) { lines.push(''); return; }
+    ws.forEach(w => { const t = line ? line + ' ' + w : w; if (x.measureText(t).width > W - L - R && line) { lines.push(line); line = w; } else line = t; });
+    lines.push(line);
+  });
+  const H = Math.max(1754, TOP + lines.length * LH + 140); c.width = W; c.height = H;
+  x.fillStyle = '#FDFCF8'; x.fillRect(0, 0, W, H);
+  x.strokeStyle = '#E8B4B4'; x.lineWidth = 2; x.beginPath(); x.moveTo(W - R + 40, 60); x.lineTo(W - R + 40, H - 60); x.stroke();
+  x.fillStyle = '#8a8a8a'; x.font = `22px Georgia, serif`; x.fillText(title || '', L, 90);
+  if (pageNo) { const t = 'p. ' + pageNo; x.fillText(t, W - R + 10 - x.measureText(t).width, 90); }
+  x.font = `${FS}px Georgia, "Source Serif 4", serif`; x.fillStyle = '#1A1A1A';
+  let n = 0;
+  lines.forEach((ln, i) => {
+    const y = TOP + i * LH; x.fillStyle = '#1A1A1A'; x.fillText(ln, L, y);
+    if (ln) { n++; if (n % 5 === 0) { x.save(); x.fillStyle = '#9a9a9a'; x.font = '20px Georgia, serif'; x.fillText(String(n), L - 50 - (n > 9 ? 10 : 0), y); x.restore(); } }
+  });
+  x.fillStyle = '#b0b0b0'; x.font = '18px Georgia, serif'; x.fillText('margin for notes →', W - R + 60, 90);
+  return c.toDataURL('image/jpeg', 0.93);
+}
 
 /* ============ Painter: coloring the page ============
    base   = the page image (never changes)
@@ -1153,7 +1601,11 @@ const Painter = (() => {
 
   const color = () => custom || { name: PALETTE[colorIdx][0], hex: PALETTE[colorIdx][1] };
   const alpha = () => tool === 'marker' ? 0.5 : 1;
-  const SHAPES = { circle: 1, box: 1 };
+  const SHAPES = { circle: 1, box: 1, line: 1, arrow: 1 };
+  const TOOLSETS = { study: ['brush', 'marker', 'fill', 'eraser', 'hand'], analysis: ['brush', 'circle', 'box', 'picker', 'eraser', 'hand'],
+    annot: ['marker', 'brush', 'line', 'circle', 'box', 'note', 'stamp', 'eraser', 'hand'], cartoon: ['circle', 'box', 'arrow', 'note', 'brush', 'marker', 'eraser', 'hand'], novelch: ['hand'] };
+  const DEFAULT = { study: 'brush', analysis: 'circle', annot: 'marker', cartoon: 'circle', novelch: 'hand' };
+  let stampIdx = 0;
   const markW = () => Math.max(3, (+$('#size').value) * 0.35) * Math.max(W, H) / 1100;
   const width = () => (+$('#size').value) * (tool === 'marker' ? 1.6 : 1) * Math.max(W, H) / 1100;
 
@@ -1178,7 +1630,7 @@ const Painter = (() => {
     setTool('brush'); updUndo();
   }
   function markSw() { $$('.sw[data-i]').forEach(b => b.setAttribute('aria-pressed', !custom && +b.dataset.i === colorIdx)); }
-  function setColor(i) { custom = null; colorIdx = i; markSw(); if (tool === 'eraser' || tool === 'hand' || tool === 'picker') setTool(mode === 'analysis' ? 'circle' : 'brush'); }
+  function setColor(i) { custom = null; colorIdx = i; markSw(); if (tool === 'eraser' || tool === 'hand' || tool === 'picker') setTool(DEFAULT[mode] || 'brush'); }
   /* ---- color analysis helpers ---- */
   const NAMED = [['black','#111111'],['charcoal','#3a3a3a'],['gray','#8a8a8a'],['silver','#c4c4c4'],['white','#f7f7f7'],['cream','#f3e9cf'],['beige','#d9c7a3'],['tan','#c49a6c'],['brown','#7a4b2a'],['dark brown','#4a2c1a'],
     ['maroon','#6e1423'],['dark red','#9e1b1b'],['red','#d62828'],['coral','#f07167'],['pink','#f4a3c4'],['hot pink','#e83e8c'],['magenta','#b5179e'],['purple','#6a3d9a'],['lavender','#b9a6e0'],['navy','#1b2a5c'],
@@ -1202,14 +1654,30 @@ const Painter = (() => {
     refresh(); saveSoon(); toast(`Picked ${name} — added to section F.`);
   }
   function setMode(m) {
-    mode = m; const ok = m === 'analysis' ? ['brush', 'circle', 'box', 'picker', 'eraser', 'hand'] : ['brush', 'marker', 'fill', 'eraser', 'hand'];
-    if (m === 'analysis' ? !['circle', 'box', 'picker'].includes(tool) : !ok.includes(tool)) setTool(m === 'analysis' ? 'circle' : 'brush');
-    if (m === 'analysis' && !custom && colorIdx === 0) setColor(3);
+    const changed = m !== mode; mode = m; const ok = TOOLSETS[m] || TOOLSETS.study;
+    $$('.tool[data-tool]').forEach(b => b.hidden = !ok.includes(b.dataset.tool));
+    cw.dataset.blend = (m === 'analysis' || m === 'cartoon') ? 'normal' : 'multiply';
+    if (changed || (m === 'analysis' ? !['circle', 'box', 'picker'].includes(tool) : !ok.includes(tool))) setTool(DEFAULT[m] || 'brush');
+    if ((m === 'analysis' || m === 'cartoon') && !custom && colorIdx === 0) setColor(3);
+    if (m === 'annot' && !custom && colorIdx === 3) setColor(0);
+  }
+  const allowed = t => (TOOLSETS[mode] || []).includes(t);
+  function setStamp(i) { stampIdx = i; setTool('stamp'); }
+  function stampAt(p, pre) {
+    const r = Math.max(15, (+$('#size').value) * 0.9) * Math.max(W, H) / 1100; const c = color().hex; const sym = STAMPS[stampIdx][0];
+    pctx.save(); pctx.beginPath(); pctx.arc(p.x, p.y, r, 0, Math.PI * 2); pctx.fillStyle = '#ffffff'; pctx.fill(); pctx.lineWidth = r * 0.16; pctx.strokeStyle = c; pctx.stroke();
+    pctx.fillStyle = c === '#FFE45C' ? '#B8860B' : c; pctx.font = `700 ${r * 1.25}px "Segoe UI Symbol","Noto Sans Symbols 2","Apple Symbols",system-ui,sans-serif`; pctx.textAlign = 'center'; pctx.textBaseline = 'middle';
+    pctx.fillText(sym, p.x, p.y + r * 0.06); pctx.restore();
+    commit(pre, p.x - r - 4, p.y - r - 4, r * 2 + 8, r * 2 + 8, false);
+  }
+  function renderStamps() {
+    const box = $('#stamps'); box.hidden = tool !== 'stamp';
+    if (!box.hidden) { box.innerHTML = STAMPS.map(([s, n], i) => `<button type="button" title="${n}" aria-pressed="${i === stampIdx}" data-i="${i}">${s}</button>`).join(''); $$('button', box).forEach(b => b.onclick = () => { stampIdx = +b.dataset.i; renderStamps(); }); }
   }
   function wipe() { if (!loaded) return; pctx.clearRect(0, 0, W, H); sctx.clearRect(0, 0, W, H); undoS.length = redoS.length = 0; isDirty = false; updUndo(); }
   function setTool(t) {
     tool = t; cw.dataset.tool = t; $$('.tool[data-tool]').forEach(b => b.setAttribute('aria-pressed', b.dataset.tool === t));
-    cw.style.touchAction = t === 'hand' ? 'auto' : 'none'; if (cursor) cursor.style.display = 'none'; updCursorSize();
+    cw.style.touchAction = t === 'hand' ? 'auto' : 'none'; if (cursor) cursor.style.display = 'none'; updCursorSize(); if ($('#stamps')) renderStamps();
   }
   function updCursorSize() { const d = width() * (cw.clientWidth / (W || 1)); cursor.style.width = cursor.style.height = Math.max(4, d) + 'px'; }
 
@@ -1219,7 +1687,7 @@ const Painter = (() => {
   }
   async function load(src) {
     const im = await loadImg(src);
-    const s = Math.min(1, MAXSIDE / Math.max(im.naturalWidth, im.naturalHeight));
+    const s = Math.min(1, Math.sqrt(MAXSIDE * MAXSIDE * 1.6 / (im.naturalWidth * im.naturalHeight)), 3400 / Math.max(im.naturalWidth, im.naturalHeight));
     W = Math.round(im.naturalWidth * s); H = Math.round(im.naturalHeight * s);
     [base, paint, stroke].forEach(c => { c.width = W; c.height = H; });
     bctx.fillStyle = '#fff'; bctx.fillRect(0, 0, W, H); bctx.drawImage(im, 0, 0, W, H);
@@ -1261,6 +1729,8 @@ const Painter = (() => {
     const p = pt(e);
     const pre = pctx.getImageData(0, 0, W, H);
     if (tool === 'picker') { pick(p); return; }
+    if (tool === 'note') { Notes.add(p.x / W, p.y / H, color().hex); setTool(mode === 'cartoon' ? 'circle' : 'marker'); return; }
+    if (tool === 'stamp') { stampAt(p, pre); return; }
     if (tool === 'fill') { fillAt(p, pre); return; }
     if (SHAPES[tool]) { drawing = { pre, shape: tool, start: p, bb: [p.x, p.y, p.x, p.y] }; stroke.style.opacity = 1; return; }
     drawing = { pre, pts: [p], bb: [p.x, p.y, p.x, p.y], erase: tool === 'eraser' };
@@ -1286,7 +1756,15 @@ const Painter = (() => {
       const p = pt(e), s = drawing.start; const x0 = Math.min(s.x, p.x), y0 = Math.min(s.y, p.y), w = Math.abs(p.x - s.x), h = Math.abs(p.y - s.y);
       drawing.bb = [x0, y0, x0 + w, y0 + h];
       sctx.clearRect(0, 0, W, H); sctx.save(); sctx.strokeStyle = color().hex; sctx.lineWidth = markW(); sctx.lineJoin = 'round'; sctx.beginPath();
-      if (drawing.shape === 'circle') sctx.ellipse(x0 + w / 2, y0 + h / 2, Math.max(1, w / 2), Math.max(1, h / 2), 0, 0, Math.PI * 2); else sctx.rect(x0, y0, w, h);
+      sctx.lineCap = 'round';
+      if (drawing.shape === 'circle') sctx.ellipse(x0 + w / 2, y0 + h / 2, Math.max(1, w / 2), Math.max(1, h / 2), 0, 0, Math.PI * 2);
+      else if (drawing.shape === 'box') sctx.rect(x0, y0, w, h);
+      else {
+        let ex = p.x, ey = p.y; if (drawing.shape === 'line' && Math.abs(ey - s.y) < Math.abs(ex - s.x) * 0.12) ey = s.y;
+        sctx.moveTo(s.x, s.y); sctx.lineTo(ex, ey);
+        if (drawing.shape === 'arrow') { const a = Math.atan2(ey - s.y, ex - s.x), L = markW() * 4.2; sctx.moveTo(ex, ey); sctx.lineTo(ex - L * Math.cos(a - 0.45), ey - L * Math.sin(a - 0.45)); sctx.moveTo(ex, ey); sctx.lineTo(ex - L * Math.cos(a + 0.45), ey - L * Math.sin(a + 0.45)); }
+        drawing.bb = [Math.min(s.x, ex) - markW() * 5, Math.min(s.y, ey) - markW() * 5, Math.max(s.x, ex) + markW() * 5, Math.max(s.y, ey) + markW() * 5];
+      }
       sctx.stroke(); sctx.restore(); return;
     }
     const evs = e.getCoalescedEvents ? e.getCoalescedEvents() : [e];
@@ -1310,7 +1788,7 @@ const Painter = (() => {
     if (!drawing) return;
     const d = drawing; drawing = null; if (d.pan) return;
     if (d.shape) {
-      if (d.bb[2] - d.bb[0] < 6 && d.bb[3] - d.bb[1] < 6) { sctx.clearRect(0, 0, W, H); toast('Drag to draw a ' + (d.shape === 'circle' ? 'circle' : 'box') + ' around a panel or zone.'); return; }
+      if (d.bb[2] - d.bb[0] < 6 && d.bb[3] - d.bb[1] < 6) { sctx.clearRect(0, 0, W, H); toast(d.shape === 'circle' || d.shape === 'box' ? 'Drag to draw a ' + d.shape + ' around a detail.' : 'Drag to draw a ' + d.shape + '.'); return; }
       pctx.drawImage(stroke, 0, 0); sctx.clearRect(0, 0, W, H); const pad = markW() + 3;
       commit(d.pre, d.bb[0] - pad, d.bb[1] - pad, d.bb[2] - d.bb[0] + pad * 2, d.bb[3] - d.bb[1] + pad * 2, false); return;
     }
@@ -1379,11 +1857,11 @@ const Painter = (() => {
     const s = maxSide ? Math.min(1, maxSide / Math.max(W, H)) : 1;
     const c = document.createElement('canvas'); c.width = Math.round(W * s); c.height = Math.round(H * s);
     const x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height);
-    x.drawImage(base, 0, 0, c.width, c.height); x.globalCompositeOperation = mode === 'analysis' ? 'source-over' : 'multiply'; x.drawImage(paint, 0, 0, c.width, c.height);
+    x.drawImage(base, 0, 0, c.width, c.height); x.globalCompositeOperation = (mode === 'analysis' || mode === 'cartoon') ? 'source-over' : 'multiply'; x.drawImage(paint, 0, 0, c.width, c.height);
     return c;
   }
   return {
-    init, load, loadPaint, reset, setMode, wipe, fit, fitIfNeeded, zoomBy, setTool, setColor, undo, redo, spaceDown, composite,
+    init, load, loadPaint, reset, setMode, wipe, allowed, setStamp, fit, fitIfNeeded, zoomBy, setTool, setColor, undo, redo, spaceDown, composite,
     has: () => loaded, dirty: () => isDirty, size: () => [W, H],
     baseDataURL: () => base.toDataURL('image/jpeg', 0.9), paintDataURL: () => paint.toDataURL('image/png'),
     paintBlob: () => new Promise(r => paint.toBlob(r, 'image/png'))
@@ -1396,11 +1874,12 @@ const Exporter = (() => {
   const elementName = () => S.C.element === 'Other…' ? S.C.other : S.C.element;
   const cite = (p, n) => (p || S.page?.label || n) ? `(Page ${p || S.page?.label || '__'}, Panel ${n || '__'})` : '';
   const stamp = () => new Date().toLocaleString(undefined, { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' });
-  const fname = ext => `Chapter Study - ${fileSafe(S.meta.name) || 'student'} - ${fileSafe(S.meta.chapter) || 'chapter'}.${ext}`;
+  const fname = ext => `${SHEET_TITLE[kind()] || 'Chapter Study'} - ${fileSafe(S.meta.name) || 'student'} - ${fileSafe(S.meta.chapter || S.meta.book) || 'work'}.${ext}`;
   const listColors = () => Object.entries(S.used || {});
 
   /* ---------- plain text ---------- */
   function text() {
+    if (kind() !== 'comic') return gText();
     const m = S.meta, L = [];
     L.push(`CHAPTER STUDY — ${m.book}${m.chapter ? ', ' + m.chapter : ''}`);
     L.push(`Name: ${m.name}${m.klass ? '  |  Class: ' + m.klass : ''}  |  Date: ${m.date}  |  Book page: ${S.page?.label || '—'}`, '');
@@ -1425,6 +1904,7 @@ const Exporter = (() => {
 
   /* ---------- printable HTML (print + preview) ---------- */
   function sheetHTML(imgURL) {
+    if (kind() !== 'comic') return gHTML(imgURL);
     const P = s => s && s.trim() ? `<div class="ans">${esc(s).replace(/\n/g, '<br>')}</div>` : '<div class="rules"><i></i><i></i><i></i></div>';
     const badge = (l, c) => `<span class="tag" style="background:${c}">${l}</span>`;
     const tos = [S.E.to1, S.E.to2, S.E.to3].map(s => s.trim()).filter(Boolean);
@@ -1480,7 +1960,7 @@ footer{margin-top:16px;display:flex;justify-content:space-between;gap:12px;font-
 <footer><span>${esc(m.name)}${m.klass ? ' · ' + esc(m.klass) : ''} · ${totalWords()} words · ${fmtTime(S.secs)}</span><span>Exported ${esc(stamp())} · panel’d</span></footer>
 </body></html>`;
   }
-  const imgURL = () => Painter.has() ? Painter.composite(1500).toDataURL('image/jpeg', 0.9) : '';
+  const imgURL = () => Painter.has() ? pinned(1500).toDataURL('image/jpeg', 0.9) : '';
 
   function preview() {
     const f = $('#prevFrame'); f.srcdoc = sheetHTML(imgURL()); openD('#dPreview');
@@ -1512,7 +1992,7 @@ footer{margin-top:16px;display:flex;justify-content:space-between;gap:12px;font-
   }
   function png() {
     if (!Painter.has()) { toast('Choose a page first.'); return; }
-    Painter.composite().toBlob(b => { download(b, fname('png')); toast('Colored page downloaded.'); }, 'image/png');
+    pinned().toBlob(b => { download(b, fname('png')); toast('Colored page downloaded.'); }, 'image/png');
   }
 
   /* ---------- PDF (hand-built, no libraries, works offline and in embeds) ---------- */
@@ -1612,6 +2092,7 @@ footer{margin-top:16px;display:flex;justify-content:space-between;gap:12px;font-
     }
   }
   function makePDF() {
+    if (kind() !== 'comic') return gPDF();
     const d = new Doc().page(); const m = S.meta; const K = '#1A1A1A';
     const head = (x, top, letter, title, color) => {
       const bw = letter.length > 1 ? 22 : 16;
@@ -1709,6 +2190,180 @@ footer{margin-top:16px;display:flex;justify-content:space-between;gap:12px;font-
       const bytes = makePDF(); download(new Blob([bytes], { type: 'application/pdf' }), fname('pdf'));
       const m = missing(); toast(m.length ? `PDF downloaded. Still missing: ${m.join(', ')}.` : 'PDF downloaded — attach it in Google Classroom.', 4200);
     } catch (e) { console.error(e); toast('Something went wrong making the PDF. Try Print instead.', 4000); }
+  }
+
+  /* ---------- study types: shared helpers ---------- */
+  function pinned(max) {
+    const c = Painter.composite(max); const notes = S.notes || []; if (!notes.length) return c;
+    const x = c.getContext('2d'); const r = Math.max(13, c.width / 55);
+    notes.forEach((n, i) => {
+      const px = n.x * c.width, py = n.y * c.height;
+      x.save(); x.beginPath(); x.arc(px, py, r, 0, Math.PI * 2); x.fillStyle = n.c; x.fill(); x.lineWidth = r * 0.14; x.strokeStyle = '#1A1A1A'; x.stroke();
+      x.fillStyle = '#1A1A1A'; x.font = `700 ${r * 1.05}px Helvetica, Arial, sans-serif`; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(String(i + 1), px, py + r * 0.05); x.restore();
+    });
+    return c;
+  }
+  function fieldText(f) {
+    const v = k => (fv(k) || '').trim();
+    switch (f.t) {
+      case 'ta': case 'in': case 'quote': return v(f.k);
+      case 'cite': return (v(f.page) || v(f.line)) ? `(Page ${v(f.page) || S.page?.label || '__'}${f.line ? `, ${f.lineLabel || 'Line'} ${v(f.line) || '__'}` : ''})` : '';
+      case 'sel': return v(f.k) === 'Other…' ? v(f.other) : v(f.k);
+      case 'checks': return v(f.k);
+      case 'row': return f.items.map(i => `${i.label}: ${v(i.k) || '—'}`).join('  ·  ');
+      case 'notes': return (S.notes || []).map((n, i) => `${i + 1}. ${n.text.trim() || '(empty)'}`).join('\n');
+    }
+    return '';
+  }
+  const flabel = f => f.label || ({ notes: 'Sticky notes', cite: '', row: '' })[f.t] || '';
+  function gText() {
+    const m = MODE(), M = S.meta, L = [];
+    L.push(`${SHEET_TITLE[kind()].toUpperCase()} — ${M.book}${M.chapter ? ', ' + M.chapter : ''}${M.title ? ' — "' + M.title + '"' : ''}`);
+    L.push(`Name: ${M.name}${M.klass ? '  |  Class: ' + M.klass : ''}  |  Date: ${M.date}${S.page ? '  |  Page: ' + (S.page.label || '—') : ''}`, '');
+    m.sections.forEach(s => {
+      L.push(`${s.id}. ${s.title.toUpperCase()}`);
+      s.fields.forEach(f => { if (f.t === 'key' || f.t === 'prompt') return; const t = fieldText(f); const l = flabel(f); if (f.t === 'cite') { if (t) L.push(t); return; } L.push(l ? `${l}: ${t || '—'}` : (t || '—')); });
+      L.push('');
+    });
+    L.push(`${totalWords()} words · ${fmtTime(S.secs)} · made with panel'd`);
+    return L.join('\n');
+  }
+  function gHTML(img) {
+    const m = MODE(), M = S.meta;
+    const P = s => s && s.trim() ? `<div class="ans">${esc(s).replace(/\n/g, '<br>')}</div>` : '<div class="rules"><i></i><i></i></div>';
+    const notesHTML = (S.notes || []).length ? `<ol class="nl">${S.notes.map((n, i) => `<li><span style="background:${n.c}">${i + 1}</span>${esc(n.text) || '<em>(empty)</em>'}</li>`).join('')}</ol>` : '<p class="muted">No sticky notes.</p>';
+    const field = f => {
+      const t = fieldText(f), lab = flabel(f);
+      if (f.t === 'key' || f.t === 'prompt') return '';
+      if (f.t === 'notes') return `<div class="lbl">Sticky notes</div>${m.page && img ? '<p class="muted">Numbered on the page — see the list beside it.</p>' : notesHTML}`;
+      if (f.t === 'cite') return t ? `<div class="cite">${esc(t)}</div>` : '';
+      if (f.t === 'row') return `<div class="rowp">${f.items.map(i => `<div><div class="lbl">${esc(i.label)}</div>${P(fv(i.k))}</div>`).join('')}</div>`;
+      if (f.t === 'quote') return `${lab ? `<div class="lbl">${esc(lab)}</div>` : ''}${t ? `<div class="q ans">${esc(t)}</div>` : '<div class="q" style="height:.5in"></div>'}`;
+      if (f.t === 'checks') return `${lab ? `<div class="lbl">${esc(lab)}</div>` : ''}<div class="cks">${f.opts.map(o => `<span class="${fv(f.k).split(', ').includes(o) ? 'on' : ''}">${esc(o)}</span>`).join('')}</div>`;
+      return `${lab ? `<div class="lbl">${esc(lab)}</div>` : ''}${P(t)}`;
+    };
+    return `<!doctype html><html><head><meta charset="utf-8"><title>${esc(fname('pdf').replace(/\.pdf$/, ''))}</title><style>${FONT_CSS}
+@page{size:letter;margin:.4in .45in}*{box-sizing:border-box;margin:0;padding:0}
+html{background:#8a8a8a}body{width:8.5in;min-height:11in;margin:0 auto;background:#fff;padding:.42in .45in .5in;font-family:"Source Serif 4",Georgia,serif;color:#1A1A1A;font-size:10pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+@media print{html{background:#fff}body{padding:0;width:auto;min-height:0}}
+header{display:flex;align-items:flex-end;justify-content:space-between;border-bottom:2.5px solid #1A1A1A;padding-bottom:6px;position:relative}
+header::after{content:"";position:absolute;left:0;right:0;bottom:-6px;border-bottom:1px solid #1A1A1A}
+h1{font-family:"Zilla Slab",Georgia,serif;font-weight:700;font-size:28pt;line-height:1}
+.brand{font-family:"Zilla Slab",Georgia,serif;font-weight:700;font-size:13pt;text-align:right}.brand small{display:block;font-family:"Plex Mono",monospace;font-weight:400;font-size:7pt;letter-spacing:.08em;text-transform:uppercase}
+.meta{display:grid;grid-template-columns:1.3fr 1.5fr 1.5fr .9fr;gap:12px;margin:16px 0 14px}
+.meta div{font-family:"Zilla Slab",Georgia,serif;font-weight:600;font-size:10pt;border-bottom:1px solid #1A1A1A;padding-bottom:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.meta span{font-family:"Source Serif 4",Georgia,serif;font-weight:400;margin-left:5px}
+.top{display:grid;grid-template-columns:4.3in 1fr;gap:.22in;margin-bottom:14px;break-inside:avoid}
+.page{border:2.5px solid #1A1A1A;box-shadow:4px 4px 0 #1A1A1A;align-self:start}.page img{display:block;width:100%;max-height:5.6in;object-fit:contain}
+.pgno{font-family:"Plex Mono",monospace;font-size:7pt;letter-spacing:.08em;text-transform:uppercase;margin-top:8px}
+.nl{list-style:none;display:flex;flex-direction:column;gap:5px}.nl li{display:flex;gap:6px;font-size:9.5pt;line-height:1.35}
+.nl span{flex:none;width:17px;height:17px;border:1px solid #1A1A1A;border-radius:50%;font:700 8pt/15px Helvetica,Arial,sans-serif;text-align:center}
+.cols{column-count:${m.page && img ? 2 : 2};column-gap:.3in}
+.sec{break-inside:avoid;margin-bottom:12px}
+h2{font-family:"Zilla Slab",Georgia,serif;font-weight:700;font-size:12.5pt;display:flex;align-items:center;gap:6px;margin-bottom:3px}
+h3{font-family:"Zilla Slab",Georgia,serif;font-size:11pt;margin-bottom:4px}
+.tag{display:inline-grid;place-items:center;min-width:19px;height:19px;border:1.5px solid #1A1A1A;border-radius:10px;font-size:9.5pt;box-shadow:1.5px 1.5px 0 #1A1A1A}
+.lbl{font-family:"Plex Mono",monospace;font-size:6.8pt;letter-spacing:.08em;text-transform:uppercase;margin:6px 0 2px;color:#444}
+.ans{font-size:10pt;line-height:1.45;overflow-wrap:anywhere}.rules i{display:block;height:.26in;border-bottom:1px solid #b5b5b5}
+.cite{font-size:9pt;margin-top:3px;color:#333}.muted{font-size:9pt;color:#666;font-style:italic}
+.q{border:1.5px solid #1A1A1A;padding:6px 18px;position:relative;font-style:italic}
+.rowp{display:grid;grid-template-columns:repeat(auto-fit,minmax(1.1in,1fr));gap:8px}
+.cks{display:flex;flex-wrap:wrap;gap:4px}.cks span{border:1px solid #999;border-radius:3px;padding:1px 6px;font-size:8.5pt;color:#888}.cks span.on{border-color:#1A1A1A;background:#FFE45C;color:#1A1A1A;font-weight:600}
+.box{border:1.5px solid #1A1A1A;box-shadow:3px 3px 0 #1A1A1A;padding:6px 9px 8px}
+footer{margin-top:14px;display:flex;justify-content:space-between;gap:12px;font-family:"Plex Mono",monospace;font-size:6.5pt;letter-spacing:.06em;text-transform:uppercase;color:#666}
+</style></head><body>
+<header><h1>${SHEET_TITLE[kind()]}</h1><div class="brand"><small>${esc(m.label)}</small>panel’d</div></header>
+<div class="meta">${m.meta.map((l, i) => `<div>${l}<span>${esc([M.name, M.book, M.chapter, M.date][i])}</span></div>`).join('')}</div>
+${M.title ? `<p style="margin:-6px 0 10px;font-family:'Zilla Slab',serif;font-weight:600">Cartoon: <span style="font-family:'Source Serif 4',serif;font-weight:400">${esc(M.title)}</span></p>` : ''}
+${m.page ? `<div class="top"><div><div class="page">${img ? `<img src="${img}" alt="">` : '<div style="height:3in;display:grid;place-items:center;color:#888">No page chosen</div>'}</div><div class="pgno">${kind() === 'cartoon' ? 'Cartoon' : 'Page ' + esc(S.page?.label || '—')}</div></div><div><h3>Sticky notes</h3>${notesHTML}${kind() === 'annot' ? `<h3 style="margin-top:12px">Symbol key</h3><div style="font-size:8.5pt;line-height:1.6">${STAMPS.map(s => `${s[0]} ${esc(s[1])}`).join('<br>')}</div>` : ''}</div></div>` : ''}
+<div class="cols">${m.sections.map(s => `<div class="sec"><h2><span class="tag" style="background:${INKS[s.ink]}">${s.id}</span>${esc(s.title)}</h2>${s.box ? '<div class="box">' : ''}${s.fields.map(field).join('')}${s.box ? '</div>' : ''}</div>`).join('')}</div>
+<footer><span>${esc(M.name)}${M.klass ? ' · ' + esc(M.klass) : ''} · ${totalWords()} words · ${fmtTime(S.secs)}</span><span>Exported ${esc(stamp())} · panel’d</span></footer>
+</body></html>`;
+  }
+  function gPDF() {
+    const m = MODE(), M = S.meta, K = '#1A1A1A';
+    const d = new Doc().page();
+    const T = SHEET_TITLE[kind()];
+    d.text(32, 748, T, 'B', 27);
+    const brand = "panel'd"; d.text(580 - tw(brand, 'B', 13), 750, brand, 'B', 13);
+    const sub = m.label.toUpperCase(); d.text(580 - tw(brand, 'B', 13) - 8 - tw(encode(sub), 'H', 6.5) - sub.length * 0.6, 751, sub, 'H', 6.5, '#555555', 0.6);
+    d.strokeC(K).lw(2.2).line(32, 739, 580, 739); d.lw(0.7).line(32, 735, 580, 735);
+    const mv = [M.name, M.book, M.chapter, M.date]; const mx = [[32, 168], [178, 340], [350, 498], [508, 580]];
+    m.meta.forEach((lab, i) => {
+      const [x0, x1] = mx[i]; d.text(x0, 712, lab, 'B', 10); const lx = x0 + tw(lab, 'B', 10) + 5;
+      let fs = 10, val = encode(mv[i] || ''); while (fs > 6.5 && tw(val, 'R', fs) > x1 - lx) fs -= 0.5;
+      if (tw(val, 'R', fs) > x1 - lx) { while (val && tw(val + '\u2026', 'R', fs) > x1 - lx) val = val.slice(0, -1); val += '\u2026'; }
+      d.text(lx, 712, val, 'R', fs); d.strokeC(K).lw(0.7).line(lx - 2, 709, x1, 709);
+    });
+    let top = 694;
+    if (M.title) { d.text(32, top - 6, 'Cartoon:', 'B', 10); d.text(32 + tw('Cartoon:', 'B', 10) + 5, top - 6, M.title, 'R', 10); top -= 18; }
+    // image + notes panel
+    if (m.page && Painter.has()) {
+      const c = pinned(1500); const durl = c.toDataURL('image/jpeg', 0.88);
+      const bin = atob(durl.split(',')[1]); const bytes = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      const id = d.image(bytes, c.width, c.height);
+      const BW = 318, BH = 360; const s = Math.min(BW / c.width, BH / c.height); const iw = c.width * s, ih = c.height * s; const ix = 32, iy = top - ih;
+      d.fill(K).rect(ix + 4, iy - 4, iw, ih, 'f'); d.op(`q ${iw.toFixed(2)} 0 0 ${ih.toFixed(2)} ${ix.toFixed(2)} ${iy.toFixed(2)} cm /${id} Do Q`); d.strokeC(K).lw(2.2).rect(ix, iy, iw, ih);
+      d.text(ix, iy - 14, kind() === 'cartoon' ? 'CARTOON' : `PAGE ${S.page?.label || '--'}`, 'H', 6.5, '#444444', 0.6);
+      const NX = ix + iw + 18, NW = 580 - NX; let ny = top - 4;
+      d.text(NX, ny - 10, 'Sticky notes', 'B', 11.5); ny -= 24;
+      const notes = S.notes || [];
+      if (!notes.length) { d.text(NX, ny - 8, 'No sticky notes.', 'I', 9, '#666666'); }
+      notes.forEach((n, i) => {
+        if (ny < iy + 10) return;
+        d.fill(n.c).strokeC(K).lw(0.7).circle(NX + 6.5, ny - 5, 6.5, 'B'); const num = String(i + 1); d.text(NX + 6.5 - tw(num, 'HB', 7) / 2, ny - 7.5, num, 'HB', 7);
+        const ls = wrap([{ t: n.text.trim() || '(empty)', f: 'R' }], NW - 18, 9);
+        ls.forEach((l, j) => { if (ny - j * 11.5 < iy + 4) return; d.runLine(NX + 17, ny - 8 - j * 11.5, l, 9); });
+        ny -= Math.max(16, ls.length * 11.5 + 5);
+      });
+      if (notes.length && ny < iy + 10) d.overflow.push({ title: 'Sticky notes', lines: wrap([{ t: notes.map((n, i) => `${i + 1}. ${n.text}`).join('\n'), f: 'R' }], 548, 10.5) });
+      top = Math.min(iy - 26, ny - 6);
+    }
+    // flowing two columns — pass 1 measures, pass 2 draws with balanced columns
+    const flow = (measure, softBreak) => {
+      const COLS = [[32, 264], [316, 264]]; let col = 0, colTop = top, y = top; const FS = 9.8, LD = 12.8; let used = 0;
+      const op = measure ? () => {} : null;
+      const D = measure ? { fill: () => D, rect: () => D, strokeC: () => D, lw: () => D, line: () => D, text: () => D, runLine: () => D } : d;
+      const newCol = () => { if (measure) { used += colTop - y; y = colTop = 1e6; return; }
+        if (col === 0) { col = 1; y = colTop; } else { d.page(); d.text(32, 752, `${T} (continued)`, 'B', 14); d.text(580 - tw(encode(M.name), 'I', 9), 753, M.name, 'I', 9, '#555555'); d.strokeC(K).lw(1).line(32, 744, 580, 744); col = 0; colTop = y = 728; } };
+      const ensure = h => { if (y - h < 46) newCol(); };
+      const X = () => COLS[col][0], CW = () => COLS[col][1];
+      const lines = (runs, size = FS, lead = LD, indent = 0) => { wrap(runs, CW() - indent, size).forEach(l => { ensure(lead); D.runLine(X() + indent, y - size, l, size); y -= lead; }); };
+      const rules = n => { for (let i = 0; i < n; i++) { ensure(17); D.strokeC('#B5B5B5').lw(0.6).line(X(), y - 14, X() + CW(), y - 14); y -= 17; } };
+      const label = s => { const ls = wrap([{ t: s.toUpperCase(), f: 'HB' }], CW(), 6.2); ensure(ls.length * 8.5 + 4 + LD); ls.forEach(l => { D.runLine(X(), y - 7, l, 6.2, '#444444'); y -= 8.5; }); y -= 2.5; };
+      if (measure) { y = colTop = 1e6; }
+      m.sections.forEach((sec, si) => {
+        if (!measure && softBreak && col === 0 && si > 0 && colTop - y > softBreak) newCol();
+        ensure(60); y -= 4;
+        D.fill(K).rect(X() + 1.2, y - 17.2, 16, 16, 'f'); D.fill(INKS[sec.ink]).strokeC(K).lw(1.2).rect(X(), y - 16, 16, 16, 'B');
+        D.text(X() + (16 - tw(sec.id, 'B', 9.5)) / 2, y - 11.6, sec.id, 'B', 9.5); D.text(X() + 22, y - 12.5, sec.title, 'B', 12.5); y -= 24;
+        sec.fields.forEach(f => {
+          if (f.t === 'key' || f.t === 'prompt') return;
+          if (f.t === 'notes') { label('Sticky notes'); if (m.page && Painter.has()) lines([{ t: (S.notes || []).length ? `${S.notes.length} numbered notes — listed beside the page.` : 'No sticky notes.', f: 'I' }]); else lines([{ t: fieldText(f) || '—', f: 'R' }]); y -= 3; return; }
+          if (f.t === 'cite') { const t = fieldText(f); if (t) { lines([{ t, f: 'R' }], 8.8, 11.5); } y -= 2; return; }
+          if (f.t === 'row') { f.items.forEach(i => { const v = fv(i.k).trim(); lines([{ t: i.label + ': ', f: 'B' }, { t: v || '________', f: 'R' }]); }); y -= 3; return; }
+          const t = fieldText(f); const lab = flabel(f);
+          if (lab) label(lab);
+          if (f.t === 'checks') { lines(f.opts.map((o, i) => ({ t: (fv(f.k).split(', ').includes(o) ? '[x] ' : '[  ] ') + o + (i < f.opts.length - 1 ? '   ' : ''), f: fv(f.k).split(', ').includes(o) ? 'B' : 'R' }))); y -= 3; return; }
+          if (!t) { rules(f.t === 'ta' ? Math.min(3, f.rows || 2) : 1); y -= 2; return; }
+          if (f.t === 'quote') { const y0 = y, c0 = col; lines([{ t: '\u201C' + t + '\u201D', f: 'I' }], FS, LD, 8); if (col === c0) D.strokeC(K).lw(1.4).line(X() + 2, y0 - 2, X() + 2, y + 2); }
+          else lines([{ t, f: f.t === 'sel' ? 'B' : 'R' }]);
+          y -= 4;
+        });
+        y -= 6;
+      });
+      return used + (colTop - y);
+    };
+    const total = flow(true);
+    const avail = top - 46;
+    flow(false, total < avail * 2 ? total / 2 + 10 : avail * 0.98);
+    // footer on page 1 + continuation for overflowed notes
+    const fl = `${M.name}${M.klass ? ' · ' + M.klass : ''} · ${totalWords()} words · ${fmtTime(S.secs)}`.toUpperCase();
+    const fr = `Exported ${stamp()} · panel'd`.toUpperCase();
+    const p1 = d.pages[0]; const cur = d.cur; d.cur = p1;
+    d.text(32, 24, fl, 'H', 6.2, '#666666', 0.5); d.text(580 - tw(encode(fr), 'H', 6.2) - fr.length * 0.5, 24, fr, 'H', 6.2, '#666666', 0.5); d.cur = cur;
+    if (d.overflow.length) { d.page(); let yy = 740; d.overflow.forEach(o => { d.text(32, yy, o.title + ' (all)', 'B', 12); yy -= 18; o.lines.forEach(l => { if (yy < 50) { d.page(); yy = 740; } d.runLine(32, yy, l, 10.5); yy -= 14; }); }); }
+    return d.build();
   }
   return { pdf, print, preview, copy, png, text, makePDF };
 })();
