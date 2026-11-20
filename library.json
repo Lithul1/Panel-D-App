@@ -4,6 +4,7 @@
       "id": "persepolis",
       "title": "Persepolis",
       "preset": "persepolis",
+      "color": false,
       "chapters": [
         { "title": "The Veil", "folder": "pages/persepolis/", "prefix": "p", "start": 3, "count": 7, "pad": 3, "ext": ".jpg", "firstPage": 3 },
         { "title": "The Bicycle", "folder": "pages/persepolis/", "prefix": "p", "start": 10, "count": 8, "pad": 3, "ext": ".jpg", "firstPage": 10 },
@@ -30,6 +31,7 @@
       "id": "ms-marvel",
       "title": "Ms. Marvel Vol. 1: No Normal",
       "preset": "generic",
+      "color": true,
       "chapters": [
         { "title": "Chapter 1", "folder": "pages/ms-marvel/", "prefix": "p", "start": 2, "count": 21, "pad": 3, "ext": ".jpg", "firstPage": 2 },
         { "title": "Chapter 2", "folder": "pages/ms-marvel/", "prefix": "p", "start": 24, "count": 21, "pad": 3, "ext": ".jpg", "firstPage": 24 },
