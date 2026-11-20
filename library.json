@@ -25,6 +25,18 @@
         { "title": "The Shabbat", "folder": "pages/persepolis/", "prefix": "p", "start": 135, "count": 8, "pad": 3, "ext": ".jpg", "firstPage": 135 },
         { "title": "The Dowry", "folder": "pages/persepolis/", "prefix": "p", "start": 143, "count": 11, "pad": 3, "ext": ".jpg", "firstPage": 143 }
       ]
+    },
+    {
+      "id": "ms-marvel",
+      "title": "Ms. Marvel Vol. 1: No Normal",
+      "preset": "generic",
+      "chapters": [
+        { "title": "Chapter 1", "folder": "pages/ms-marvel/", "prefix": "p", "start": 2, "count": 21, "pad": 3, "ext": ".jpg", "firstPage": 2 },
+        { "title": "Chapter 2", "folder": "pages/ms-marvel/", "prefix": "p", "start": 24, "count": 21, "pad": 3, "ext": ".jpg", "firstPage": 24 },
+        { "title": "Chapter 3", "folder": "pages/ms-marvel/", "prefix": "p", "start": 46, "count": 21, "pad": 3, "ext": ".jpg", "firstPage": 46 },
+        { "title": "Chapter 4", "folder": "pages/ms-marvel/", "prefix": "p", "start": 68, "count": 21, "pad": 3, "ext": ".jpg", "firstPage": 68 },
+        { "title": "Chapter 5", "folder": "pages/ms-marvel/", "prefix": "p", "start": 90, "count": 21, "pad": 3, "ext": ".jpg", "firstPage": 90 }
+      ]
     }
   ]
 }
